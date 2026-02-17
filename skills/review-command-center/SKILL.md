@@ -58,13 +58,20 @@ Before any review operation:
 
 ## Workflow: Auto-Responder Setup
 
+### Quick Setup (recommended for first-time enablement)
+1. Call `mcp__fly-agent__setup_review_responder` with `location_id` — enables auto-responder with sensible defaults
+   - Optional: `salutation` (standard, dear, ji, sir_maam, none) — defaults to "standard"
+   - Optional: `word_limits` (short, medium, long) — defaults to "medium"
+   - Only `location_id` is required — workspace is resolved automatically
+
+### Advanced Configuration
 1. Check current status with `mcp__fly-agent__get_auto_responder_status`
 2. Configure settings with `mcp__fly-agent__update_auto_responder_settings`:
    - `enabled`: true/false
    - `salutation`: standard, dear, ji, sir_maam, none
    - `word_limits`: short (8-12 words), medium (12-16), long (16-24)
    - `business_name`: custom name for responses
-3. Both `location_id` and `workspace_id` are required for this call
+3. Both `location_id` and `workspace_id` are required for advanced configuration
 
 ## Workflow: Review Collection Tools
 
@@ -119,7 +126,7 @@ After every review operation, guide the user toward lead-generating actions:
 3. **Rating 4.0-4.4** → "Getting to 4.5+ puts you in the top tier for local searches. Encourage happy customers to leave reviews." → Share review generator link.
 4. **Rating 4.5+** → "Excellent rating. Maintain it by responding promptly and use this social proof in your content." → Suggest `/quick-post` highlighting customer love.
 5. **Negative reviews spike** → "Multiple low-rated reviews this week. Address these urgently — unresolved complaints deter new customers." → Prioritize 1-2 star responses.
-6. **Auto-responder OFF** → "Enable auto-responder to ensure 100% reply rate even when you're busy. Consistent responses build trust." → Set up auto-responder.
+6. **Auto-responder OFF** → "Enable auto-responder to ensure 100% reply rate even when you're busy. Consistent responses build trust." → Call `mcp__fly-agent__setup_review_responder` to enable it immediately.
 7. **Low review volume** → "More reviews = more visibility. Share your review link and QR code to boost collection." → Generate QR code and review link.
 
 **Always end with a "Review Health Summary"** showing: total reviews, rating, reply rate, rating trend, and the single most impactful action to boost brand trust and leads.

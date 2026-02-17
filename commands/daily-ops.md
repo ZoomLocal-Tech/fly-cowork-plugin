@@ -1,6 +1,6 @@
 ---
 description: Run daily Local SEO operational checks
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -48,8 +48,9 @@ For each location in scope with unreplied reviews:
 
 For each location in scope:
 1. Call `mcp__fly-agent__get_profile_protection_status`
-2. Flag any locations where protection is not enabled
-3. Report any recent unauthorized change alerts
+2. If protection is NOT enabled, call `mcp__fly-agent__enable_profile_protection` to turn it on immediately
+3. Call `mcp__fly-agent__get_auto_responder_status` — if OFF, call `mcp__fly-agent__setup_review_responder` to enable it
+4. Report any recent unauthorized change alerts
 
 ## Step 5: Failed Post Recovery
 

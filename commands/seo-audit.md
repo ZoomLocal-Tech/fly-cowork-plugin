@@ -1,6 +1,6 @@
 ---
 description: Run a quick SEO audit on a location
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__run_gmb_audit"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -31,6 +31,7 @@ For each location in scope:
 3. Call `mcp__fly-agent__get_profile_audit` for completeness score and recommendations
 4. Call `mcp__fly-agent__get_seo_score_breakdown` for detailed scoring
 5. Call `mcp__fly-agent__get_profile_protection_status` to check monitoring
+6. If protection is NOT enabled, call `mcp__fly-agent__enable_profile_protection` to turn it on immediately
 
 ## Step 3: Present Results with Business Impact
 

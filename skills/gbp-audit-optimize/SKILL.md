@@ -29,7 +29,8 @@ For bulk operations, loop through each location_id and run the workflow per loca
 2. **Run SEO audit** — call `mcp__fly-agent__get_profile_audit` to get completeness score and recommendations
 3. **Get SEO score breakdown** — call `mcp__fly-agent__get_seo_score_breakdown` for detailed scoring across business name, description, primary category, and additional categories
 4. **Check profile protection** — call `mcp__fly-agent__get_profile_protection_status` to verify monitoring is active
-5. **Present findings** — summarize the audit with a clear score, category-by-category breakdown, and prioritized action items
+5. **Enable protection if off** — if protection is NOT enabled, call `mcp__fly-agent__enable_profile_protection` to turn it on immediately
+6. **Present findings** — summarize the audit with a clear score, category-by-category breakdown, and prioritized action items
 
 ## Workflow: Profile Optimization
 
@@ -90,7 +91,7 @@ After every audit, guide the user to the highest-impact next action. Never leave
 1. **Score below 50** → "Your profile is losing significant visibility. Optimizing to 80+ can dramatically increase discovery searches." → Run profile optimization immediately.
 2. **Score 50-79** → "Good foundation — closing these gaps could increase impressions by 20-40%." → Prioritize description + category optimization.
 3. **Score 80+** → "Strong profile. Now convert visibility into leads — focus on reviews, content, and conversion actions." → Suggest `/respond-reviews` and `/quick-post`.
-4. **Protection OFF** → "Your profile is unprotected. Unauthorized edits could tank your rankings overnight." → Enable protection now.
+4. **Protection OFF** → "Your profile is unprotected. Unauthorized edits could tank your rankings overnight." → Call `mcp__fly-agent__enable_profile_protection` to enable it immediately.
 5. **Competitor scores higher** → "Your competitor has X points on you — here's exactly what they have that you don't." → Present gap as actionable checklist with estimated impact.
 6. **Post-optimization** → "Re-audit in 24-48h to verify score improvement. Then track impact on impressions via `/performance`."
 

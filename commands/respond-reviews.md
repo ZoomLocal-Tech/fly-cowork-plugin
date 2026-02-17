@@ -1,6 +1,6 @@
 ---
 description: Batch-respond to all unreplied reviews
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__respond_to_review", "mcp__fly-agent__get_workspace_review_summary"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__respond_to_review", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_auto_responder_status"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -46,4 +46,5 @@ Present an outcome-focused report:
 - **Negative reviews addressed**: X negative reviews responded to — "Timely responses to negative reviews can prevent customer churn and show potential customers you care"
 - **Reply rate impact**: "Your reply rate is now X%. Businesses with 90%+ reply rates see higher trust and better conversion."
 - **Remaining**: Y reviews still pending (if any)
-- **Recommended Next Action**: Based on results — e.g., "Consider setting up the auto-responder to maintain 100% reply rate" or "Your review volume is low — share your review link to collect more social proof" or "Great job! All reviews handled. Next: check your rankings to see the impact."
+- **Auto-responder check**: Call `mcp__fly-agent__get_auto_responder_status` — if OFF, offer to enable it with `mcp__fly-agent__setup_review_responder` to maintain 100% reply rate automatically
+- **Recommended Next Action**: Based on results — e.g., "Enable the auto-responder to maintain 100% reply rate" or "Your review volume is low — share your review link to collect more social proof" or "Great job! All reviews handled. Next: check your rankings to see the impact."
