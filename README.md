@@ -6,13 +6,21 @@ Comprehensive Local SEO management suite powered by Fly Agent. Built for marketi
 
 This plugin provides end-to-end Local SEO workflows through 10 specialized skills, 10 slash commands, and 2 autonomous agents — all designed to work across multiple workspaces and locations, with full white-label branding support.
 
+## Installation
+
+In your terminal, run:
+
+```bash
+claude plugin marketplace add https://github.com/ZoomLocal-Tech/fly-cowork-plugin.git
+claude plugin install fly-cowork-plugin@zoomlocal-marketplace
+```
+
 ## Quick Setup
 
-1. Install the plugin in Cowork
-2. Get your API key from [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys)
-3. Customize the plugin — you'll be asked for your MCP server URL and API key (see CONNECTORS.md for full details)
-4. Run `/setup-branding` to configure your white-label identity (name, logo, colors, footer)
-5. Run `/daily-ops` to start your first operational check
+1. Get your API key from [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys)
+2. Customize the plugin — you'll be asked for your MCP server URL and API key (see CONNECTORS.md for full details)
+3. Run `/setup-branding` to configure your white-label identity (name, logo, colors, footer)
+4. Run `/daily-ops` to start your first operational check
 
 ## Components
 
@@ -110,8 +118,8 @@ Nothing runs on "all" unless you explicitly say so. This keeps operations safe a
 
 ## Version
 
-0.2.0
+0.6.0
 
 ## Author
 
-Anand Mahajan
+ZoomLocal Tech Private Limited
