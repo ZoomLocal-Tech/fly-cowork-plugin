@@ -1,0 +1,12 @@
+{
+  "name": "fly-cowork-plugin",
+  "version": "0.6.0",
+  "description": "Comprehensive Google Business Profile management suite for agencies, freelancers, and multi-location brands. Includes 10 skills for GBP auditing, review management, rank tracking, citation scanning, content publishing, analytics, microsites, traffic insights, reporting, and multi-workspace operations — plus daily/weekly/monthly operational routines and white-label branding support. Powered by the Fly Agent MCP. (Social Networks coming soon!)",
+  "author": {
+    "name": "ZoomLocal Tech Private Limited",
+    "url": "https://www.fly-social.com"
+  },
+  "repository": "https://github.com/ZoomLocal-Tech/fly-cowork-plugin",
+  "homepage": "https://www.fly-social.com",
+  "license": "MIT"
+}

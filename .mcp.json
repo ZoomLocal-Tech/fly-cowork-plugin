@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "fly-agent": {
+      "type": "sse",
+      "url": "~~local-seo-platform",
+      "headers": {
+        "x-api-key": "~~fly-agent-api-key"
+      }
+    }
+  }
+}
