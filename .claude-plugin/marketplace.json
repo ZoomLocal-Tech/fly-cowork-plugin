@@ -15,7 +15,7 @@
         "name": "ZoomLocal Tech Private Limited",
         "email": "support@fly-social.com"
       },
-      "source": ".",
+      "source": "./",
       "category": "productivity",
       "homepage": "https://www.fly-social.com",
       "tags": ["local-seo", "gbp", "google-business", "reviews", "analytics", "agency"]
