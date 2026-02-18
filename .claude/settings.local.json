@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__fly-agent__get_review_stats",
+      "mcp__fly-agent__list_all_microsites",
+      "mcp__fly-agent__list_locations",
+      "WebFetch(domain:support.claude.com)",
+      "WebFetch(domain:workos.com)",
+      "WebFetch(domain:medium.com)"
+    ]
+  }
+}

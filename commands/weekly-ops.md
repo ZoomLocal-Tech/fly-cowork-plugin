@@ -1,6 +1,6 @@
 ---
 description: Run weekly Local SEO operational routine
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__refresh_all_rankings", "mcp__fly-agent__get_local_rankings", "mcp__fly-agent__get_ranking_trends", "mcp__fly-agent__get_visibility_score", "mcp__fly-agent__get_review_sentiment", "mcp__fly-agent__get_performance_comparison", "mcp__fly-agent__get_performance_summary", "mcp__fly-agent__get_citation_health_report", "mcp__fly-agent__get_content_suggestions", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_post_drafts", "mcp__fly-agent__get_workspace_performance", "mcp__fly-agent__get_workspace_rankings", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_upcoming_holidays", "mcp__fly-agent__generate_report_pdf", "mcp__fly-agent__send_report_email"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__refresh_all_rankings", "mcp__fly-agent__get_local_rankings", "mcp__fly-agent__get_ranking_trends", "mcp__fly-agent__get_visibility_score", "mcp__fly-agent__get_review_sentiment", "mcp__fly-agent__get_performance_comparison", "mcp__fly-agent__get_performance_summary", "mcp__fly-agent__get_citation_health_report", "mcp__fly-agent__get_content_suggestions", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_post_drafts", "mcp__fly-agent__get_workspace_performance", "mcp__fly-agent__get_workspace_rankings", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_upcoming_holidays", "mcp__fly-agent__generate_report_pdf", "mcp__fly-agent__send_report_email", "mcp__fly-agent__bulk_refresh_rankings", "mcp__fly-agent__get_workspace_ranking_overview", "mcp__fly-agent__get_workspace_performance_comparison", "mcp__fly-agent__get_workspace_content_health"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -30,13 +30,13 @@ Do NOT proceed until both workspace and location scope are confirmed.
 
 ## Step 2: Ranking Refresh & Analysis
 
-For each location in scope:
-1. Call `mcp__fly-agent__refresh_all_rankings` to trigger fresh rank scans (takes 30-120s per keyword)
-2. Call `mcp__fly-agent__get_local_rankings` to display current positions
-3. Call `mcp__fly-agent__get_ranking_trends` for 30-day movement
-4. Call `mcp__fly-agent__get_visibility_score` for overall visibility
+**Use aggregate tools** to refresh and analyze rankings across all locations in bulk:
+1. Call `mcp__fly-agent__bulk_refresh_rankings` to trigger fresh rank scans across all workspace locations at once (async — scans run in background, batched 5 at a time)
+2. Call `mcp__fly-agent__get_workspace_ranking_overview` to get per-location ranking data including keywords tracked, top-3 counts, first-page counts, visibility scores, trend direction, and top keywords — all in one call
 
-For workspace-wide view, also call `mcp__fly-agent__get_workspace_rankings`.
+For workspace-wide aggregates, also call `mcp__fly-agent__get_workspace_rankings`.
+
+**Fallback**: For a single location, use `refresh_all_rankings` → `get_local_rankings` → `get_ranking_trends` → `get_visibility_score` individually.
 
 Present an outcome-focused ranking summary:
 - Keywords in top 3 (these capture ~70% of local clicks)
@@ -54,11 +54,13 @@ For each location in scope:
 
 ## Step 4: Performance Snapshot
 
-For each location in scope:
-1. Call `mcp__fly-agent__get_performance_comparison` with period "week" for week-over-week changes
+**Use aggregate tool** to get performance across all locations in one call:
+1. Call `mcp__fly-agent__get_workspace_performance_comparison` with period "week" — returns current vs previous period comparison for impressions, clicks, calls, and directions across all workspace locations
 2. Highlight significant changes (>10% up or down) in any metric
 
-For workspace-wide view, call `mcp__fly-agent__get_workspace_performance`.
+For additional workspace-wide view, call `mcp__fly-agent__get_workspace_performance`.
+
+**Fallback**: For a single location, use `get_performance_comparison` with period "week" individually.
 
 ## Step 5: Citation Health Check
 
@@ -68,10 +70,12 @@ For each location in scope:
 
 ## Step 6: Content Planning & Publishing
 
-1. Call `mcp__fly-agent__get_upcoming_holidays` with days_ahead=14 for timely content opportunities
-2. Call `mcp__fly-agent__get_content_suggestions` for strategic content ideas
-3. Check `mcp__fly-agent__get_post_drafts` for any ready-to-publish drafts
-4. Offer to generate and publish 1-2 posts per location using `generate_post_content` → `create_post_draft` → `publish_post`
+**Use aggregate tool** to identify content gaps before generating:
+1. Call `mcp__fly-agent__get_workspace_content_health` to see post activity, content gaps, and last-post dates across all locations — identifies which locations need content most urgently
+2. Call `mcp__fly-agent__get_upcoming_holidays` with days_ahead=14 for timely content opportunities
+3. For locations identified as needing content, call `mcp__fly-agent__get_content_suggestions` for strategic content ideas
+4. Check `mcp__fly-agent__get_post_drafts` for any ready-to-publish drafts
+5. Offer to generate and publish 1-2 posts per location using `generate_post_content` → `create_post_draft` → `publish_post`
 
 ## Step 7: Load Branding & Weekly Summary
 

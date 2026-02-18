@@ -1,6 +1,6 @@
 ---
 description: Run daily Local SEO operational checks
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email", "mcp__fly-agent__get_workspace_reviews_needing_reply", "mcp__fly-agent__get_workspace_protection_status", "mcp__fly-agent__get_workspace_failed_posts", "mcp__fly-agent__bulk_enable_protection", "mcp__fly-agent__bulk_setup_review_responder", "mcp__fly-agent__bulk_retry_failed_posts"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -36,28 +36,35 @@ For each workspace in scope:
 
 Present a quick overview with quantifiable metrics: total unreplied reviews (with urgency — negative reviews first), current average rating and trend, and any protection alerts. Frame as: "X reviews need responses — Y are negative and should be addressed urgently to protect your rating."
 
-## Step 3: Review Response (per location)
+## Step 3: Review Response
 
-For each location in scope with unreplied reviews:
-1. Call `mcp__fly-agent__get_reviews_needing_reply` with limit 10
-2. For each unreplied review, call `mcp__fly-agent__generate_review_response` with appropriate tone based on star rating (friendly for 4-5, professional for 3, apologetic for 1-2)
-3. Present generated responses to the user for approval
-4. On approval, post using `mcp__fly-agent__post_selected_reply`
+**Use aggregate tool first** to get all unreplied reviews across the workspace in a single call:
+1. Call `mcp__fly-agent__get_workspace_reviews_needing_reply` with `limit_per_location=10`
+2. This returns all unreplied reviews grouped by location — no need to loop through locations individually
+3. For each unreplied review, call `mcp__fly-agent__generate_review_response` with appropriate tone based on star rating (friendly for 4-5, professional for 3, apologetic for 1-2)
+4. Present generated responses to the user for approval
+5. On approval, post using `mcp__fly-agent__post_selected_reply`
+
+**Fallback**: If running for a single specific location, use `mcp__fly-agent__get_reviews_needing_reply` directly.
 
 ## Step 4: Profile Protection Check
 
-For each location in scope:
-1. Call `mcp__fly-agent__get_profile_protection_status`
-2. If protection is NOT enabled, call `mcp__fly-agent__enable_profile_protection` to turn it on immediately
-3. Call `mcp__fly-agent__get_auto_responder_status` — if OFF, call `mcp__fly-agent__setup_review_responder` to enable it
+**Use aggregate tool** to check all locations at once:
+1. Call `mcp__fly-agent__get_workspace_protection_status` — returns protection and auto-responder status for all locations in one call
+2. If any locations have protection disabled, call `mcp__fly-agent__bulk_enable_protection` to enable for all unprotected locations at once
+3. If any locations have auto-responder disabled, call `mcp__fly-agent__bulk_setup_review_responder` to enable for all at once
 4. Report any recent unauthorized change alerts
+
+**Fallback**: For a single location, use the individual `get_profile_protection_status` → `enable_profile_protection` → `get_auto_responder_status` → `setup_review_responder` flow.
 
 ## Step 5: Failed Post Recovery
 
-For each location in scope:
-1. Call `mcp__fly-agent__get_failed_posts`
+**Use aggregate tool** to check all locations at once:
+1. Call `mcp__fly-agent__get_workspace_failed_posts` — returns all failed posts grouped by location
 2. If any failed posts have retry attempts remaining, ask user if they want to retry
-3. Call `mcp__fly-agent__retry_failed_post` for approved retries
+3. Call `mcp__fly-agent__bulk_retry_failed_posts` to retry all eligible failed posts across the workspace at once
+
+**Fallback**: For a single location, use `get_failed_posts` → `retry_failed_post` individually.
 
 ## Step 6: Load Branding & Daily Summary
 

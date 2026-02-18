@@ -1,6 +1,6 @@
 ---
 description: Run monthly Local SEO review and reporting
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_monthly_report", "mcp__fly-agent__get_monthly_summary", "mcp__fly-agent__generate_workspace_report", "mcp__fly-agent__compare_months", "mcp__fly-agent__generate_report_pdf", "mcp__fly-agent__send_report_email", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_executive_kpi_summary", "mcp__fly-agent__get_regional_performance", "mcp__fly-agent__get_performance_trends", "mcp__fly-agent__get_traffic_insights", "mcp__fly-agent__get_keyword_performance", "mcp__fly-agent__get_monthly_trends", "mcp__fly-agent__get_content_gaps", "mcp__fly-agent__get_best_performing_content", "mcp__fly-agent__get_citation_health_report", "mcp__fly-agent__get_workspace_citations_overview", "mcp__fly-agent__get_location_performance_table", "mcp__fly-agent__refresh_traffic_insights"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_monthly_report", "mcp__fly-agent__get_monthly_summary", "mcp__fly-agent__generate_workspace_report", "mcp__fly-agent__compare_months", "mcp__fly-agent__generate_report_pdf", "mcp__fly-agent__send_report_email", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_executive_kpi_summary", "mcp__fly-agent__get_regional_performance", "mcp__fly-agent__get_performance_trends", "mcp__fly-agent__get_traffic_insights", "mcp__fly-agent__get_keyword_performance", "mcp__fly-agent__get_monthly_trends", "mcp__fly-agent__get_content_gaps", "mcp__fly-agent__get_best_performing_content", "mcp__fly-agent__get_citation_health_report", "mcp__fly-agent__get_workspace_citations_overview", "mcp__fly-agent__get_location_performance_table", "mcp__fly-agent__refresh_traffic_insights", "mcp__fly-agent__get_workspace_seo_audit_summary", "mcp__fly-agent__get_workspace_traffic_overview", "mcp__fly-agent__bulk_refresh_traffic_insights", "mcp__fly-agent__get_workspace_content_health", "mcp__fly-agent__get_workspace_onboarding_status"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -60,18 +60,21 @@ Call `mcp__fly-agent__compare_months` comparing current month to previous month.
 
 ## Step 4: SEO Re-Audit
 
-For each location in scope:
-1. Call `mcp__fly-agent__get_profile_audit` for current completeness score
-2. Call `mcp__fly-agent__get_seo_score_breakdown` for category-level detail
-3. Compare to last month's score and flag improvements or regressions
+**Use aggregate tool** to audit all locations at once:
+1. Call `mcp__fly-agent__get_workspace_seo_audit_summary` — returns SEO scores, score distribution (excellent/good/fair/poor), and per-location audit details sorted by lowest score first, all in one call
+2. Compare to last month's scores and flag improvements or regressions
+3. Focus optimization recommendations on locations scoring "fair" or "poor"
+
+**Fallback**: For a single location, use `get_profile_audit` → `get_seo_score_breakdown` individually.
 
 ## Step 5: Traffic Insights Refresh
 
-For each location in scope:
-1. Call `mcp__fly-agent__refresh_traffic_insights` to pull latest Google data
-2. Call `mcp__fly-agent__get_traffic_insights` with months=1 for the month's traffic
-3. Call `mcp__fly-agent__get_monthly_trends` for trend direction
-4. Call `mcp__fly-agent__get_keyword_performance` to identify trending/declining keywords
+**Use aggregate tools** to refresh and analyze traffic across all locations:
+1. Call `mcp__fly-agent__bulk_refresh_traffic_insights` to pull latest Google data for all workspace locations at once (batched 10 at a time)
+2. Call `mcp__fly-agent__get_workspace_traffic_overview` with months=1 — returns search traffic, maps traffic, and top keywords per location in one call
+3. For locations with notable traffic changes, drill into `mcp__fly-agent__get_monthly_trends` and `mcp__fly-agent__get_keyword_performance` for detailed analysis
+
+**Fallback**: For a single location, use `refresh_traffic_insights` → `get_traffic_insights` → `get_monthly_trends` → `get_keyword_performance` individually.
 
 ## Step 6: Multi-Location Comparison (if scope includes multiple locations)
 
@@ -81,10 +84,12 @@ For each location in scope:
 
 ## Step 7: Content Review
 
-For each location in scope:
-1. Call `mcp__fly-agent__get_best_performing_content` for top content from past 90 days
-2. Call `mcp__fly-agent__get_content_gaps` to identify missing content types
-3. Recommend content focus areas for next month
+**Use aggregate tool** to review content health across all locations:
+1. Call `mcp__fly-agent__get_workspace_content_health` with days=90 — returns posts published, content gaps, last-post dates, and post-type breakdowns per location in one call
+2. Identify locations with no recent posts or content gaps
+3. Recommend content focus areas for next month, prioritizing locations with the least recent activity
+
+**Fallback**: For a single location, use `get_best_performing_content` → `get_content_gaps` individually.
 
 ## Step 8: Citation Health
 
