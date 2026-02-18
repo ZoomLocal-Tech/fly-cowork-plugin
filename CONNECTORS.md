@@ -1,27 +1,35 @@
 # Connectors
 
-## How tool references work
+## How MCP configuration works
 
-Plugin files use `~~category` as a placeholder for whatever tool the user
-connects in that category. Plugins are tool-agnostic — they describe
-workflows in terms of categories rather than specific products.
+This plugin connects to the Fly Agent MCP server via environment variables. Claude Code expands `${VAR}` references in the plugin's `.mcp.json` at startup, so you just need to set two environment variables before launching Claude Code.
 
-## Connectors for this plugin
+## Required Environment Variables
 
-| Category | Placeholder | Included servers | Other options |
-|----------|-------------|-----------------|---------------|
-| Local SEO Platform | `~~local-seo-platform` | Fly Agent (fly-social.com) | Any MCP-compatible GBP management platform |
+| Variable | Description | Where to Get It |
+|----------|-------------|-----------------|
+| `FLY_AGENT_URL` | Fly Agent MCP server URL | Your Fly dashboard — typically `https://fly-agent-main-681315111540.asia-south1.run.app/mcp/sse` |
+| `FLY_AGENT_API_KEY` | Your Fly Agent API key | Generate at [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys) |
 
-## Customization Points
+### Setting the variables
 
-During plugin customization, the user will be asked to provide:
+**macOS / Linux** — add to your `~/.zshrc` or `~/.bashrc`:
 
-| Placeholder | Description | Where to Get It |
-|-------------|-------------|-----------------|
-| `~~local-seo-platform` | Fly Agent MCP server URL | Fly dashboard or API key settings page |
-| `~~fly-agent-api-key` | Your Fly Agent API key for authenticating MCP requests | Generate at [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys) |
+```bash
+export FLY_AGENT_URL="https://fly-agent-main-681315111540.asia-south1.run.app/mcp/sse"
+export FLY_AGENT_API_KEY="your_api_key_here"
+```
 
-Both values are configured in the plugin's `.mcp.json` file during customization — no environment variables needed.
+Then restart your terminal (or run `source ~/.zshrc`) before launching Claude Code.
+
+**Windows** — set via System Environment Variables or PowerShell:
+
+```powershell
+[Environment]::SetEnvironmentVariable("FLY_AGENT_URL", "https://fly-agent-main-681315111540.asia-south1.run.app/mcp/sse", "User")
+[Environment]::SetEnvironmentVariable("FLY_AGENT_API_KEY", "your_api_key_here", "User")
+```
+
+Then restart your terminal.
 
 ## About the Fly Agent MCP
 
@@ -47,20 +55,17 @@ Sign up at [fly-social.com/fly-app](https://www.fly-social.com/fly-app) if you d
 
 1. Go to **Settings > API Keys**: [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys)
 2. Click **Create New Key**
-3. Copy and save your API key securely — you'll need it during plugin customization
+3. Copy and save your API key securely
 
-### Step 3: Customize the Plugin
+### Step 3: Set Environment Variables
 
-Run the plugin customizer in Cowork. You'll be asked to provide:
+Add the two environment variables to your shell profile (see above), then restart your terminal and Claude Code.
 
-1. **MCP Server URL** — your Fly Agent MCP endpoint (provided in your Fly dashboard)
-2. **API Key** — the key you generated in Step 2
-
-The customizer will inject both values into the plugin's `.mcp.json` automatically.
+The plugin's `.mcp.json` will automatically pick up your values — no manual file editing needed.
 
 ## Security Notes
 
-- Your API key is stored in the plugin's local `.mcp.json` config file
-- Never share your plugin config file publicly or commit it to version control
+- Your API key is stored as an environment variable, not in any committed file
+- Never commit `.mcp.json` files containing real credentials to version control
 - Rotate your API key periodically from the Settings page
 - Each team member should use their own API key for proper access control

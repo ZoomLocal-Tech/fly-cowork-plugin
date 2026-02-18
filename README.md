@@ -18,9 +18,16 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 ## Quick Setup
 
 1. Get your API key from [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys)
-2. Customize the plugin — you'll be asked for your MCP server URL and API key (see CONNECTORS.md for full details)
-3. Run `/setup-branding` to configure your white-label identity (name, logo, colors, footer)
-4. Run `/daily-ops` to start your first operational check
+2. Set environment variables (add to your `~/.zshrc` or `~/.bashrc`):
+   ```bash
+   export FLY_AGENT_URL="https://fly-agent-main-681315111540.asia-south1.run.app/mcp/sse"
+   export FLY_AGENT_API_KEY="your_api_key_here"
+   ```
+3. Restart your terminal, then restart Claude Code
+4. Run `/setup-branding` to configure your white-label identity (name, logo, colors, footer)
+5. Run `/daily-ops` to start your first operational check
+
+See [CONNECTORS.md](CONNECTORS.md) for full setup details.
 
 ## Components
 
@@ -63,7 +70,7 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 
 ### MCP Integration
 
-This plugin connects to the Fly Agent MCP server for Google Business Profile management. Authentication is configured during plugin customization — your API key and MCP server URL are stored in the plugin's `.mcp.json`. See `CONNECTORS.md` for full setup instructions.
+This plugin connects to the Fly Agent MCP server for Google Business Profile management. Authentication is configured via environment variables (`FLY_AGENT_URL` and `FLY_AGENT_API_KEY`) which are expanded automatically from the plugin's `.mcp.json` at startup. See `CONNECTORS.md` for full setup instructions.
 
 ## White-Label Branding
 
