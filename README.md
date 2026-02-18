@@ -4,7 +4,7 @@ Comprehensive Local SEO management suite powered by Fly Agent. Built for marketi
 
 ## What It Does
 
-This plugin provides end-to-end Local SEO workflows through 10 specialized skills, 10 slash commands, and 2 autonomous agents — all designed to work across multiple workspaces and locations, with full white-label branding support.
+This plugin provides end-to-end Local SEO workflows through 10 specialized skills, 11 slash commands, and 2 autonomous agents — all designed to work across multiple workspaces and locations, with full white-label branding support.
 
 ## Installation
 
@@ -18,9 +18,11 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 ## Quick Setup
 
 1. Get your API key from [fly-social.com/fly-app/settings?tab=api-keys](https://www.fly-social.com/fly-app/settings?tab=api-keys)
-2. Customize the plugin — you'll be asked for your MCP server URL and API key (see [CONNECTORS.md](CONNECTORS.md) for full details)
-3. Run `/setup-branding` to configure your white-label identity (name, logo, colors, footer)
+2. Run `/setup-mcp` to connect the Fly Agent MCP server (or configure it during plugin customization)
+3. Restart Claude Code, then run `/setup-branding` to configure your white-label identity
 4. Run `/daily-ops` to start your first operational check
+
+If you already have the `fly-agent` MCP configured in your Claude settings, skip step 2 — the plugin will use it automatically.
 
 ## Components
 
@@ -39,10 +41,11 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 | **Reporting Hub** | "monthly report", "PDF report", "email report" | Report generation, PDF export, email delivery, white-labeled |
 | **Workspace & Account Ops** | "switch workspace", "list locations", "subscription" | Multi-workspace navigation, account management, branding setup |
 
-### Commands (10)
+### Commands (11)
 
 | Command | Description |
 |---------|-------------|
+| `/setup-mcp` | Connect the Fly Agent MCP server (writes config to your Claude settings) |
 | `/setup-branding` | Configure white-label branding (name, logo, colors) for all reports and emails |
 | `/daily-ops` | Run daily operational checks: reviews, protection alerts, failed posts |
 | `/weekly-ops` | Weekly routine: rankings refresh, sentiment, content, performance |
@@ -63,7 +66,7 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 
 ### MCP Integration
 
-This plugin connects to the Fly Agent MCP server for Google Business Profile management. Authentication is configured during plugin customization — your API key and MCP server URL are stored in the plugin's `.mcp.json`. See `CONNECTORS.md` for full setup instructions and manual MCP setup if needed.
+This plugin connects to the Fly Agent MCP server for Google Business Profile management. Run `/setup-mcp` to configure the connection, or if you already have `fly-agent` in your Claude MCP settings, the plugin will use it automatically. See `CONNECTORS.md` for details.
 
 ## White-Label Branding
 
