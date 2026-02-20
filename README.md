@@ -4,7 +4,9 @@ Comprehensive Local SEO management suite powered by Fly Agent. Built for marketi
 
 ## What It Does
 
-This plugin provides end-to-end Local SEO workflows through 10 specialized skills, 11 slash commands, and 2 autonomous agents — all designed to work across multiple workspaces and locations, with full white-label branding support.
+This plugin gives you end-to-end Local SEO management through natural conversation. Ask Claude to audit your profile, respond to reviews, publish posts, track rankings, or generate reports — it handles the rest. Everything works across multiple workspaces and locations, with full white-label branding support.
+
+**10 specialized skills** | **11 slash commands** | **2 autonomous agents** | **150+ MCP tools** | **16 self-service link types**
 
 ## Installation
 
@@ -24,53 +26,99 @@ claude plugin install fly-cowork-plugin@zoomlocal-marketplace
 
 If you already have the `fly-agent` MCP configured in your Claude settings, skip step 2 — the plugin will use it automatically.
 
-## Components
+## Skills (10)
 
-### Skills (10)
+Skills activate automatically when you ask naturally. No need to memorize commands — just describe what you want.
 
-| Skill | Trigger Phrases | What It Does |
-|-------|----------------|--------------|
-| **GBP Audit & Optimize** | "audit my profile", "optimize my GBP", "check SEO score" | Full profile audit, SEO scoring, optimization, competitor analysis |
-| **Review Command Center** | "manage reviews", "respond to reviews", "review sentiment" | Review response, sentiment analysis, auto-responder setup, QR codes |
-| **Performance & Analytics** | "show my analytics", "KPI dashboard", "compare performance" | Performance tracking, device/source breakdowns, regional analysis |
-| **Rank Tracker** | "keyword rankings", "visibility score", "track keywords" | Keyword management, rank scanning, competitor analysis |
-| **Citation Scanner** | "scan citations", "NAP consistency", "directory listings" | Citation discovery, NAP auditing, opportunity identification |
-| **Content Engine** | "create a post", "content calendar", "trending topics" | Content ideation, creation, scheduling, publishing |
-| **Microsite Manager** | "create microsite", "landing page", "store locator" | Microsite creation, theming, sections, custom domains, analytics |
-| **Traffic Insights** | "search traffic", "keyword traffic", "traffic trends" | Search traffic analysis, category breakdowns, keyword performance |
-| **Reporting Hub** | "monthly report", "PDF report", "email report" | Report generation, PDF export, email delivery, white-labeled |
-| **Workspace & Account Ops** | "switch workspace", "list locations", "subscription" | Multi-workspace navigation, account management, branding setup |
+| Skill | Ask things like... | What you can do |
+|-------|-------------------|-----------------|
+| **GBP Audit & Optimize** | "audit my profile", "optimize my GBP", "check SEO score" | Run a full profile audit with SEO scoring, get AI-generated descriptions, update categories and services using Google's validated taxonomy, enable profile protection against unauthorized edits, compare before/after audit scores |
+| **Review Command Center** | "manage reviews", "respond to reviews", "review sentiment" | Respond to all unreplied reviews in bulk with tone-appropriate AI replies (friendly for 5-star, apologetic for 1-star), set up an auto-responder for hands-free 100% reply rate, generate QR codes and review collection links to get more reviews |
+| **Performance & Analytics** | "show my analytics", "KPI dashboard", "compare performance" | See views, clicks, calls, and direction requests across all locations, compare performance across time periods, get executive KPI summaries, break down by device type and region |
+| **Rank Tracker** | "keyword rankings", "visibility score", "track keywords" | Track up to 5 keywords per location with grid-based positioning, run on-demand rank scans, see ranking trends over time, analyze competitor positions, get a visibility score summarizing your local search presence |
+| **Citation Scanner** | "scan citations", "NAP consistency", "directory listings" | Discover your business listings across online directories, audit NAP (Name, Address, Phone) consistency, identify missing citation opportunities, get a prioritized fix list with health scores |
+| **Content Engine** | "create a post", "content calendar", "trending topics" | Generate post ideas from trending topics and upcoming holidays, create posts with AI-written copy, schedule or publish immediately to GBP, manage drafts, track which content performs best, fill content gaps |
+| **Microsite Manager** | "create microsite", "landing page", "store locator" | Build a branded landing page or store locator in minutes, choose from templates, customize theme/colors/fonts, manage page sections (hero, services, reviews, map), set up a custom domain, track visitor analytics |
+| **Traffic Insights** | "search traffic", "keyword traffic", "traffic trends" | Understand how customers find you on Google — see traffic by category (branded, transactional, navigational), track individual keyword performance, compare periods, identify growing and declining search terms |
+| **Reporting Hub** | "monthly report", "PDF report", "email report" | Generate monthly performance reports, compare month-over-month trends, export as white-labeled PDFs, email reports directly to clients — all branded with your agency's identity |
+| **Workspace & Account Ops** | "switch workspace", "list locations", "subscription" | Navigate between client workspaces and locations, check account and subscription status, manage onboarding progress, generate self-service links for any action, upload photos and reference images |
 
-### Commands (11)
+## Commands (11)
 
-| Command | Description |
+Slash commands are quick shortcuts for common workflows. Type them directly to jump into action.
+
+| Command | What it does |
 |---------|-------------|
-| `/setup-mcp` | Connect the Fly Agent MCP server (writes config to your Claude settings) |
-| `/setup-branding` | Configure white-label branding (name, logo, colors) for all reports and emails |
-| `/daily-ops` | Run daily operational checks: reviews, protection alerts, failed posts |
-| `/weekly-ops` | Weekly routine: rankings refresh, sentiment, content, performance |
-| `/monthly-ops` | Monthly review: full reports, re-audit, traffic, content gaps |
-| `/seo-audit` | Quick SEO audit on one or all locations |
-| `/respond-reviews` | Batch-respond to all unreplied reviews |
-| `/rank-check` | Check keyword rankings or scan a new keyword |
-| `/citation-scan` | Run a full citation discovery scan |
-| `/quick-post` | Generate and publish a GBP post |
-| `/performance` | Quick performance dashboard |
+| `/setup-mcp` | Connect the Fly Agent MCP server to your Claude settings — required for all other commands to work |
+| `/setup-branding` | Configure your agency's white-label identity (name, logo, colors, tagline) used in all reports and emails |
+| `/daily-ops` | Daily operational check: respond to new reviews, verify profile protection is active, recover any failed posts (~10 min) |
+| `/weekly-ops` | Weekly routine: refresh keyword rankings, check review sentiment trends, publish fresh content, compare performance week-over-week (~30 min) |
+| `/monthly-ops` | Monthly review: generate full reports with month-over-month comparisons, re-audit all profiles, analyze traffic trends, plan next month's content (~60 min) |
+| `/seo-audit` | Run a quick SEO audit on one or all locations — get a completeness score, category & service gap analysis, and prioritized optimization recommendations |
+| `/respond-reviews` | Batch-respond to all unreplied reviews across selected locations with AI-generated, tone-appropriate replies. Review and approve before posting |
+| `/rank-check` | Check current keyword rankings or scan a new keyword. See your position on the local map grid and track changes over time |
+| `/citation-scan` | Run a full citation discovery scan — find where your business is listed, check NAP accuracy, and identify directories where you're missing |
+| `/quick-post` | Generate and publish a GBP post in minutes. Provide a topic or get AI suggestions, review the copy, then publish to one or all locations |
+| `/performance` | Quick performance dashboard showing views, clicks, calls, and direction requests with period-over-period comparison |
 
-### Agents (2)
+## Agents (2)
 
-| Agent | When It's Used |
-|-------|---------------|
-| **Workspace Orchestrator** | Bulk operations across multiple workspaces/locations (audits, reports, comparisons) |
-| **Review Responder** | Systematic batch review response with tone-appropriate replies |
+Autonomous agents handle complex multi-step workflows that span multiple locations.
 
-### MCP Integration
+| Agent | What it handles |
+|-------|----------------|
+| **Workspace Orchestrator** | Bulk operations across all your locations: run audits on every profile at once, compare performance across locations, generate workspace-wide reports, refresh rankings everywhere, identify your top and bottom performers. Uses workspace-level aggregate API calls so 50 locations take one call, not 50. |
+| **Review Responder** | Systematic review response across all locations: prioritizes negative reviews first, generates tone-appropriate replies (apologetic for 1-star, professional for 3-star, friendly for 5-star), presents all responses for your approval before posting, reports on reply rate improvement when done. |
 
-This plugin connects to the Fly Agent MCP server for Google Business Profile management. Run `/setup-mcp` to configure the connection, or if you already have `fly-agent` in your Claude MCP settings, the plugin will use it automatically. See `CONNECTORS.md` for details.
+## Self-Service Links (16 types)
+
+Every workflow follows an "automation first" approach — the AI handles things directly when possible. But when you want to review something yourself or the action needs a UI (like uploading photos), you can request a mobile-friendly self-service link.
+
+| Link Type | What it opens |
+|-----------|--------------|
+| **Onboarding** | Guided setup wizard for new locations |
+| **Optimize** | Step-by-step profile optimization (categories, services, hours, attributes) |
+| **Review Generator** | Shareable link for collecting customer reviews |
+| **Review Responder** | UI for reviewing and responding to customer reviews |
+| **New Post** | Create and publish a GBP post with AI content suggestions |
+| **Templates** | Browse and apply post templates |
+| **Content Ideas** | Get AI-generated content ideas and plan posts |
+| **Photos** | Upload and manage GBP photos |
+| **Reference Images** | Upload brand reference images for AI-generated visuals |
+| **Services** | Add or edit services listed on your profile |
+| **Attributes** | Set business attributes (Wi-Fi, accessibility, seating, etc.) |
+| **Microsite** | Edit your landing page or store locator |
+| **Custom Domain** | Set up a custom domain for your microsite |
+| **Dashboard** | View your location's performance dashboard |
+| **Credits Purchase** | Buy additional credits for AI features |
+| **Account** | Manage account settings and connected Google account |
+
+Say "give me a link to..." followed by any of these to get a shareable URL you can open on any device.
+
+## MCP Tools (150+)
+
+The plugin connects to the Fly Agent MCP server, which exposes 150+ tools organized into these categories:
+
+| Category | Example tools | What they let you do |
+|----------|--------------|---------------------|
+| **Profile Management** | `get_gbp_profile`, `update_profile_field`, `get_profile_audit` | Read and update any field on your Google Business Profile |
+| **Category & Service Validation** | `get_category_suggestions`, `update_profile_categories`, `get_available_services`, `update_services` | Update categories and services using Google's validated taxonomy — no more failed updates from invalid values |
+| **Review Operations** | `get_reviews_needing_reply`, `generate_review_response`, `post_selected_reply`, `setup_review_responder` | Fetch unreplied reviews, generate AI responses, post replies, configure auto-responders |
+| **Content & Publishing** | `generate_post_content`, `create_post_draft`, `publish_post`, `schedule_post` | Create, draft, schedule, and publish GBP posts |
+| **Rankings & Visibility** | `get_local_rankings`, `run_on_demand_scan`, `get_visibility_score`, `suggest_keywords` | Track keyword positions, run scans, monitor visibility trends |
+| **Performance & Traffic** | `get_performance_summary`, `get_traffic_insights`, `get_keyword_performance` | Access views, clicks, calls, traffic sources, and keyword performance data |
+| **Microsites** | `generate_microsite`, `set_theme`, `update_hero`, `setup_custom_domain` | Build landing pages, customize themes, manage sections, set up domains |
+| **Reporting** | `generate_monthly_report`, `generate_report_pdf`, `send_report_email` | Generate, export, and email white-labeled reports |
+| **Citations** | `run_citation_scan`, `get_citation_health_report`, `get_all_citations` | Discover, audit, and manage directory listings |
+| **Workspace Aggregates** | `get_workspace_summary`, `get_workspace_review_summary`, `bulk_refresh_rankings` | Workspace-wide operations in a single API call |
+| **Shareable Links** | `generate_shareable_link`, `get_available_links` | Generate mobile-friendly self-service links for 16 action types |
+| **Protection & Setup** | `enable_profile_protection`, `get_setup_progress`, `create_onboarding_link` | Monitor profile changes, track setup completion, generate onboarding links |
+
+Run `/setup-mcp` to configure the connection, or if you already have `fly-agent` in your Claude MCP settings, the plugin uses it automatically. See `CONNECTORS.md` for details.
 
 ## White-Label Branding
 
-All reports, emails, and generated summaries can carry your brand identity instead of Fly's. Run `/setup-branding` to configure:
+All reports, emails, and generated summaries carry your brand identity instead of Fly's. Run `/setup-branding` to configure:
 
 - **Brand / Agency Name** — appears on all report headers and email subjects
 - **Logo URL** — included in PDF report headers and email templates

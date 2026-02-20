@@ -2,66 +2,69 @@
 
 ## v0.8.0 (2026-02-20)
 
-### Shareable Links Integration & Agentic-First Pattern
+### Self-Service Links & Smarter Automation
 
-**New MCP Tools Available:**
-- `generate_shareable_link` — generate mobile-friendly self-service links for 16 different actions
-- `get_available_links` — show all available self-service link options to users
+**Do it yourself or let the AI handle it — your choice.**
 
-**New Link Types (6 added to existing 10):**
-- `optimize` — Full profile optimization wizard (categories, services, hours, attributes)
-- `photos` — Upload/manage GBP photos
-- `gbp_services` — Add/edit services on Google Business Profile
-- `gbp_attributes` — Add/edit business attributes (amenities, accessibility)
-- `credits_purchase` — Purchase additional credits
-- `dashboard` — View location performance dashboard
+This release adds 16 shareable self-service links across the plugin. Every workflow now follows an "automation first" approach: the AI tries to get the job done directly using tools, and only offers you a self-service link if you'd prefer to review and do it yourself in the UI.
 
-**Agentic-First, Link-Fallback Pattern:**
-- All skills now follow the principle: prefer direct tool actions first, offer shareable links only as fallback
-- `gbp-audit-optimize` skill adds decision table mapping each action to its primary (tool) and fallback (link) approach
-- Link fallback sections added to: review-command-center, content-engine, microsite-manager, workspace-account-ops
+**New self-service link types you can request:**
 
-**Commands Updated:**
-- `/seo-audit` — added `generate_shareable_link` to allowed-tools, added manual optimization link option in results
-- `/daily-ops` — added `generate_shareable_link` to allowed-tools
-- `/respond-reviews` — added `generate_shareable_link` to allowed-tools
-- `/quick-post` — added `generate_shareable_link` to allowed-tools
+- **Optimize** — Opens a guided wizard to update your categories, services, hours, and attributes step by step
+- **Photos** — Upload and manage your Google Business Profile photos directly from your phone or browser
+- **Services** — Add or edit the services listed on your profile so customers know exactly what you offer
+- **Attributes** — Set business attributes like Wi-Fi, wheelchair access, outdoor seating, etc.
+- **Buy Credits** — Purchase additional credits when you need more AI-generated content, scans, or reports
+- **Dashboard** — View your location's performance dashboard with key metrics at a glance
 
-**Skills Updated:**
-- `workspace-account-ops` — added complete 16-type shareable link reference table
+These join the 10 existing link types (review generator, review responder, microsite editor, post creator, templates, content ideas, reference images, onboarding, account settings, and custom domain setup).
+
+**How it works in practice:**
+
+When you ask to optimize your profile, the AI will:
+1. Try to make the changes directly (update categories, services, description, etc.)
+2. If something needs your manual review — like uploading photos — it generates a mobile-friendly link you can tap to finish in the UI
+3. You're always in control: say "give me a link" anytime to switch to the self-service UI
+
+**Updated commands:** `/seo-audit`, `/daily-ops`, `/respond-reviews`, and `/quick-post` all now support generating self-service links when needed.
 
 ---
 
 ## v0.7.0 (2026-02-20)
 
-### Validated Category & Service Tools
+### Validated Category & Service Updates
 
-**New MCP Tools Referenced:**
-- `get_category_suggestions` — get validated category recommendations from Google's official taxonomy
-- `update_profile_categories` — update primary and additional categories with validated gcid values
-- `get_available_services` — list valid service types for a location's categories
-- `update_services` — add/update service items with validated serviceTypeId values
+**No more guesswork when updating your business categories and services.**
 
-**Skills Updated:**
-- `gbp-audit-optimize` — new "Category & Service Optimization" workflow with validated tools
-- `gbp-audit-optimize` — `update_profile_field` no longer recommended for categories/services
+Previously, updating categories and services could fail silently if the values didn't match Google's official taxonomy. Now, every category and service update is validated against Google's database before being applied.
 
-**Commands Updated:**
-- `/seo-audit` — added `get_category_suggestions` and `get_available_services` to allowed-tools
-- `/seo-audit` — added "Step 2b: Category & Service Gap Analysis" workflow
+**What you can now do:**
 
-**Reference Files:**
-- `seo-scoring-guide.md` — updated optimization priority order with tool recommendations
+- **Get category recommendations** — Ask "what categories should I use?" and get suggestions pulled from Google's official taxonomy, matched to your business type
+- **Update categories with confidence** — When the AI updates your primary or additional categories, it uses verified Google category IDs so changes actually stick
+- **See available services** — Ask "what services can I add?" to see the exact service types Google supports for your business categories
+- **Add services that work** — Service updates now use validated service type IDs, eliminating failed or ignored updates
+
+**Where you'll see this:**
+
+- `/seo-audit` now includes a Category & Service Gap Analysis step that checks if you're using the best categories and identifies missing services
+- The GBP Audit & Optimize skill walks you through category and service optimization using the validated tools
+- The SEO scoring guide now prioritizes category and service optimization in its recommendations
 
 ---
 
 ## v0.6.1 (2026-02-19)
 
-### Workspace-Level Aggregate Tools
+### Faster Multi-Location Operations
 
-- Added workspace-level bulk/aggregate tools to `/daily-ops`, `/weekly-ops`, `/monthly-ops` commands
-- Added `workspace-orchestrator` and `review-responder` agent types
-- Workspace-wide review, protection, content, and SEO operations now use single aggregate API calls instead of per-location loops
+**Manage all your locations at once instead of one by one.**
+
+If you manage multiple locations (or multiple clients with many locations each), bulk operations are now significantly faster.
+
+**What changed:**
+
+- **Workspace-level commands** — `/daily-ops`, `/weekly-ops`, and `/monthly-ops` now use workspace-wide API calls instead of looping through each location individually. This means checking reviews, protection status, and content health across 50 locations takes one call instead of 50.
+- **Two new agent types** — The Workspace Orchestrator handles bulk cross-location operations (audits, reports, comparisons), and the Review Responder systematically works through unreplied reviews across all your locations with appropriate tone for each rating level.
 
 ---
 
@@ -69,10 +72,29 @@
 
 ### Initial Release
 
-- 10 specialized skills: gbp-audit-optimize, review-command-center, performance-analytics, rank-tracker, citation-scanner, content-engine, microsite-manager, traffic-insights, reporting-hub, workspace-account-ops
-- 11 slash commands: /setup-mcp, /setup-branding, /daily-ops, /weekly-ops, /monthly-ops, /seo-audit, /respond-reviews, /rank-check, /citation-scan, /quick-post, /performance
-- 2 autonomous agents: workspace-orchestrator, review-responder
-- Multi-workspace, multi-location support with scope confirmation
-- White-label branding configuration
-- Quantifiable outcomes and KPIs for every workflow
-- Action-to-outcome funnels guiding users to highest-impact next steps
+**Everything you need to manage Google Business Profiles from Claude Code.**
+
+The first release of the Local SEO Pro plugin brings a complete management suite for agencies, freelancers, and multi-location brands.
+
+**10 skills** that activate when you ask naturally:
+- Audit and optimize your Google Business Profile with SEO scoring
+- Respond to customer reviews individually or in bulk with AI-generated, tone-appropriate replies
+- Track keyword rankings and monitor your local search visibility
+- Create, schedule, and publish posts to keep your profile active
+- Build and customize landing pages and store locators
+- Analyze search traffic to understand how customers find you
+- Generate branded PDF reports and email them to clients
+- Scan and manage business citations across online directories
+- View performance analytics with regional and device breakdowns
+- Navigate multi-workspace setups and manage accounts and subscriptions
+
+**11 slash commands** for quick actions:
+- `/setup-mcp` and `/setup-branding` to get started
+- `/daily-ops`, `/weekly-ops`, `/monthly-ops` for operational routines
+- `/seo-audit`, `/respond-reviews`, `/rank-check`, `/citation-scan`, `/quick-post`, `/performance` for on-demand tasks
+
+**2 autonomous agents** that handle complex multi-location workflows:
+- Workspace Orchestrator for cross-location bulk operations
+- Review Responder for systematic review management
+
+**Built for agencies:** Multi-workspace support, per-client branding, scope confirmation before every operation, and white-label PDF reports.
