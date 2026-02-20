@@ -37,9 +37,16 @@ Present ideas as a numbered list with topic, suggested post type, and why it's r
    - `post_type`: UPDATE (general), OFFER (promotions), or EVENT (events)
    - `style`: engaging, professional, or casual
 2. Review the generated content with the user
-3. Option A: **Save as draft** — call `mcp__fly-agent__create_post_draft` with title, content, post_type, and optional media_urls and call_to_action
-4. Option B: **Publish immediately** — after saving as draft, call `mcp__fly-agent__publish_post` with the post_id
-5. Option C: **Schedule for later** — after saving as draft, call `mcp__fly-agent__schedule_post` with the post_id and desired publish time
+3. **Handle images (CRITICAL)**:
+   - **If user uploaded an image in chat**: FIRST call `mcp__fly-agent__upload_user_image` with the image data to get a permanent URL
+   - **If user provides an image URL**: Call `mcp__fly-agent__upload_user_image` with image_url parameter to re-upload it to permanent storage
+   - **If no image yet**: Optionally call `mcp__fly-agent__generate_post_image` to create an AI-generated image
+   - **Store the returned URL** to use in the next step
+4. Option A: **Save as draft** — call `mcp__fly-agent__create_post_draft` with title, content, post_type, and **IMPORTANT: include media_urls** (from step 3) and optional call_to_action
+5. Option B: **Publish immediately** — after saving as draft, call `mcp__fly-agent__publish_post` with the post_id
+6. Option C: **Schedule for later** — after saving as draft, call `mcp__fly-agent__schedule_post` with the post_id and desired publish time
+
+**IMPORTANT**: Posts with images get significantly more engagement. Always upload user images BEFORE creating the draft, not after.
 
 ## Workflow: Draft Management
 
@@ -64,6 +71,31 @@ Present ideas as a numbered list with topic, suggested post type, and why it's r
 1. **View calendar** — call `mcp__fly-agent__get_content_calendar` with month and year to see planned and past posts
 2. **Plan ahead** — combine holiday calendar, trending topics, and content gaps to build a monthly content plan
 3. Create drafts for each planned post to build a ready-to-publish queue
+
+## Workflow: Image Handling
+
+**CRITICAL**: Always upload images BEFORE creating the draft. Posts with images get significantly more engagement.
+
+### When User Uploads an Image in Chat:
+1. Call `mcp__fly-agent__upload_user_image` with the image data from the chat attachment
+2. The tool returns a permanent URL
+3. Pass that URL to `create_post_draft` via the `media_urls` parameter
+
+### When User Provides an Image URL:
+1. Call `mcp__fly-agent__upload_user_image` with `image_url` parameter
+2. This re-uploads it to permanent storage and returns a proper URL
+3. Pass that URL to `create_post_draft` via the `media_urls` parameter
+
+### When No Image is Available:
+1. Optionally call `mcp__fly-agent__generate_post_image` with a description
+2. The tool generates an AI image and returns a URL
+3. Pass that URL to `create_post_draft` via the `media_urls` parameter
+
+### Multiple Images:
+- For multiple images, call `upload_user_image` for each one
+- Collect all URLs and pass them as comma-separated to `media_urls` parameter
+
+**Never skip the upload step** — `create_post_draft` requires accessible URLs, not raw image data.
 
 ## Workflow: Multi-Location Content
 

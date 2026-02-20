@@ -1,6 +1,6 @@
 ---
 description: Generate and publish a GBP post quickly
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_content_suggestions", "mcp__fly-agent__generate_shareable_link"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_content_suggestions", "mcp__fly-agent__upload_user_image", "mcp__fly-agent__generate_post_image", "mcp__fly-agent__generate_shareable_link"]
 argument-hint: [topic or "suggest"]
 ---
 
@@ -29,14 +29,22 @@ Do NOT proceed until scope is confirmed.
 2. Generate content with `mcp__fly-agent__generate_post_content` using the topic, post_type "UPDATE", and style "engaging"
 3. Present the generated post to the user for review
 
-## Step 3: Publish
+## Step 3: Handle Images (if provided)
+
+**CRITICAL**: If the user uploaded an image or provides an image URL:
+1. Call `mcp__fly-agent__upload_user_image` FIRST to get a permanent URL
+2. Store the returned URL to include in the draft
+
+Posts with images get significantly more engagement — always encourage image use.
+
+## Step 4: Publish
 
 For each location in scope:
-1. Save as draft with `mcp__fly-agent__create_post_draft`
+1. Save as draft with `mcp__fly-agent__create_post_draft` (include media_urls from Step 3 if available)
 2. On user approval, publish with `mcp__fly-agent__publish_post`
 3. Confirm publication with post URL
 
-## Step 4: Outcome Summary
+## Step 5: Outcome Summary
 
 After publishing, present the impact context:
 - **Published to**: X locations

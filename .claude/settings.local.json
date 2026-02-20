@@ -6,7 +6,8 @@
       "mcp__fly-agent__list_locations",
       "WebFetch(domain:support.claude.com)",
       "WebFetch(domain:workos.com)",
-      "WebFetch(domain:medium.com)"
+      "WebFetch(domain:medium.com)",
+      "Bash(git push:*)"
     ]
   }
 }
