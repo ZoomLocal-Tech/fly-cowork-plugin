@@ -39,10 +39,11 @@ While the audit focuses on on-profile factors, local rankings are also influence
 ## Optimization Priority Order
 
 When improving a profile, prioritize in this order:
-1. Fix incorrect primary category (biggest ranking impact)
+1. Fix incorrect primary category (biggest ranking impact) — use `get_category_suggestions` → `update_profile_categories`
 2. Complete and optimize description (high impact, easy win)
-3. Add all relevant additional categories
-4. Ensure NAP consistency across citations
-5. Set up and respond to reviews
-6. Create regular Google Posts
-7. Upload quality photos
+3. Add all relevant additional categories — use `get_category_suggestions` for validated options
+4. Add service items matching your categories — use `get_available_services` → `update_services`
+5. Ensure NAP consistency across citations
+6. Set up and respond to reviews
+7. Create regular Google Posts
+8. Upload quality photos

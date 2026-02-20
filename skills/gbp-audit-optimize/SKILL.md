@@ -39,7 +39,18 @@ For bulk operations, loop through each location_id and run the workflow per loca
 3. **Generate SEO description** — call `mcp__fly-agent__generate_seo_description` with style preference (professional, friendly, or compelling)
 4. **Present optimization suggestions** — show the user what changes are recommended, numbered for selection
 5. **Apply selected changes** — call `mcp__fly-agent__apply_profile_optimizations` with the user's selection (e.g., "1, 2, 3" or "all")
-6. **Update specific fields** if needed — use `mcp__fly-agent__update_profile_field` for targeted changes to description, phone, website, categories, hours, attributes, service areas, or service items
+6. **Update specific fields** if needed — use `mcp__fly-agent__update_profile_field` for targeted changes to description, phone, website, hours, attributes, or service areas
+
+## Workflow: Category & Service Optimization
+
+Use these dedicated tools for category and service updates — they validate against Google's official taxonomy to ensure only valid values are submitted.
+
+1. **Get category suggestions** — call `mcp__fly-agent__get_category_suggestions` to get relevant primary and additional category recommendations based on the business type
+2. **Update categories** — call `mcp__fly-agent__update_profile_categories` with validated category IDs from the suggestions to set primary and additional categories
+3. **Get available services** — call `mcp__fly-agent__get_available_services` to see the valid service types for the location's categories (pulled from Google's official taxonomy)
+4. **Update services** — call `mcp__fly-agent__update_services` with validated serviceTypeId values to add or update service items on the profile
+
+> **Important**: Do NOT use `update_profile_field` for categories or service items — use the dedicated tools above which validate against Google's official values and prevent rejected updates.
 
 ## Workflow: Competitor Audit
 
