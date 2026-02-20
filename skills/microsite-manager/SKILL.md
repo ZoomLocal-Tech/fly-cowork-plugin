@@ -147,3 +147,13 @@ After every microsite operation, guide toward measurable improvements:
 7. **Post-setup** → "Check back in 7 days via microsite analytics to see your traffic baseline. Then optimize based on what sections get the most engagement."
 
 **Always end with a "Microsite Health Summary"**: live status, visitor trend, conversion rate, and the best action to drive more leads from the site.
+
+## Shareable Link Fallbacks
+
+When the user wants to configure their microsite manually in the web UI, use `mcp__fly-agent__generate_shareable_link`:
+
+| link_type | When to offer |
+|-----------|---------------|
+| `microsite` | User wants to visually configure microsite settings, design, and sections |
+
+**Always try the agentic approach first** (e.g., `set_theme`, `update_hero`, `toggle_section`, `update_seo`). Only offer the microsite link if the user prefers the visual editor or wants to preview changes live.

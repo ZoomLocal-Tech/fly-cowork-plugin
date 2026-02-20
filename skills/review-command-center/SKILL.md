@@ -131,6 +131,18 @@ After every review operation, guide the user toward lead-generating actions:
 
 **Always end with a "Review Health Summary"** showing: total reviews, rating, reply rate, rating trend, and the single most impactful action to boost brand trust and leads.
 
+## Shareable Link Fallbacks
+
+When the user wants to do things manually in the web UI, use `mcp__fly-agent__generate_shareable_link`:
+
+| link_type | When to offer |
+|-----------|---------------|
+| `review_generator` | User wants to visually configure review QR code and collection page settings |
+| `review_responder` | User wants to visually configure auto-responder rules and tone settings |
+| `dashboard` | User wants to see review stats in a visual dashboard |
+
+**Always try the agentic approach first** (e.g., `setup_review_responder`, `get_review_qr_code`). Only offer links if the user prefers manual control or the tool action fails.
+
 ## Reference Files
 
 - **`references/review-response-best-practices.md`** — guidelines for crafting effective review responses

@@ -1,6 +1,6 @@
 ---
 description: Batch-respond to all unreplied reviews
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__respond_to_review", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_auto_responder_status"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__respond_to_review", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__generate_shareable_link"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 

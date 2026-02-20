@@ -51,6 +51,7 @@ Call `mcp__fly-agent__get_usage_summary` to see monthly usage of chat messages a
 
 1. **Reference images** — call `mcp__fly-agent__get_reference_images_upload_link` for content personalization images
 2. **GBP photos** — call `mcp__fly-agent__get_photos_upload_link` for photos published to the Google Business Profile
+3. **Alternative** — call `mcp__fly-agent__generate_shareable_link` with `link_type="photos"` or `link_type="references"` for the mobile-friendly upload interface
 
 ## Workflow: Profile Links
 
@@ -124,3 +125,28 @@ After any account/workspace operation, guide toward value realization:
 3. **New workspace/location added** → "Let's get this location optimized from day one. Start with `/seo-audit` → `/setup-branding` → `/respond-reviews`."
 4. **Multiple workspaces** → "As an agency, ensure every client workspace has: branding configured, keywords tracked, and a monthly reporting cadence established."
 5. **After switching context** → Always suggest the most relevant next action for the selected workspace/location based on what needs attention most.
+
+## All Shareable Link Types
+
+Use `mcp__fly-agent__generate_shareable_link` with `link_type` to generate mobile-friendly self-service links. Call `mcp__fly-agent__get_available_links` to show the user all options.
+
+**Always prefer agentic tools first. Only offer links when the user wants manual control or the action requires UI interaction (file uploads, OAuth, etc.).**
+
+| link_type | Purpose |
+|-----------|---------|
+| `optimize` | Full profile optimization wizard (categories, services, hours, attributes) |
+| `gbp_services` | Add/edit services on the Google Business Profile |
+| `gbp_attributes` | Add/edit business attributes (amenities, accessibility) |
+| `photos` | Upload/manage GBP photos |
+| `templates` | Select frame/post templates |
+| `references` | Upload reference images (logos, products, team) |
+| `new_post` | Create and publish a GBP post |
+| `ideas` | View and approve content ideas |
+| `review_generator` | Configure review QR code and collection page |
+| `review_responder` | Configure auto-responder settings |
+| `microsite` | Configure microsite/landing page |
+| `dashboard` | View location performance dashboard |
+| `subscriptions` | View plan, usage, and billing |
+| `credits_purchase` | Purchase additional credits |
+| `connect` | Connect a new Google location (requires phone) |
+| `reconnect` | Refresh expired Google connection |

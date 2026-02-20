@@ -121,3 +121,17 @@ After every content operation, guide toward lead-generating outcomes:
 - **CTAs**: Always include a clear call to action — "Call us", "Visit today", "Book now"
 - **Length**: 150-300 words is the sweet spot
 - **Consistency**: Regular posting compounds over time — set up a content calendar and stick to it
+
+## Shareable Link Fallbacks
+
+When the user wants to do things manually in the web UI, use `mcp__fly-agent__generate_shareable_link`:
+
+| link_type | When to offer |
+|-----------|---------------|
+| `new_post` | User wants full control over post creation in the web wizard |
+| `templates` | User wants to browse and select frame designs for posts |
+| `references` | User wants to upload logo, product photos, or team images |
+| `ideas` | User wants to browse and approve content ideas visually |
+| `photos` | User wants to upload/manage GBP photos |
+
+**Always try the agentic approach first** (e.g., `generate_post_content`, `create_post_draft`, `publish_post`). Only offer links if the user prefers manual control or wants to upload media files.

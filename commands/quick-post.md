@@ -1,6 +1,6 @@
 ---
 description: Generate and publish a GBP post quickly
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_content_suggestions"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__generate_post_content", "mcp__fly-agent__create_post_draft", "mcp__fly-agent__publish_post", "mcp__fly-agent__get_content_suggestions", "mcp__fly-agent__generate_shareable_link"]
 argument-hint: [topic or "suggest"]
 ---
 

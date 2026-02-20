@@ -12,6 +12,24 @@ version: 0.1.0
 
 Full Google Business Profile audit and optimization workflow. Supports single-location and multi-location operations across workspaces.
 
+## Agentic First, Link Fallback
+
+**Always prefer direct tool actions over shareable links.** Only offer a shareable link when:
+- The direct tool approach fails or doesn't fully cover the need
+- The user explicitly asks to "do it manually" or "review it myself"
+- The action requires UI interaction (e.g., photo uploads, OAuth connect)
+
+| Action | Primary (Agentic) | Fallback (Link) |
+|--------|-------------------|-----------------|
+| Update categories | `get_category_suggestions` → `update_profile_categories` | `generate_shareable_link` type=optimize |
+| Update services | `get_available_services` → `update_services` | `generate_shareable_link` type=gbp_services |
+| Update attributes | `update_profile_field` | `generate_shareable_link` type=gbp_attributes |
+| Upload photos | _(no agentic tool — link required)_ | `generate_shareable_link` type=photos |
+| Full optimization | `apply_profile_optimizations` | `generate_shareable_link` type=optimize |
+| Microsite setup | Microsite tools (set_theme, update_hero, etc.) | `generate_shareable_link` type=microsite |
+
+When the agentic approach completes successfully, skip the link. When it fails or partially succeeds, offer: _"I've done what I can directly. Want a link to review and finish the rest in the UI?"_
+
 ## Multi-Location Awareness
 
 Before running any audit or optimization:
@@ -51,6 +69,11 @@ Use these dedicated tools for category and service updates — they validate aga
 4. **Update services** — call `mcp__fly-agent__update_services` with validated serviceTypeId values to add or update service items on the profile
 
 > **Important**: Do NOT use `update_profile_field` for categories or service items — use the dedicated tools above which validate against Google's official values and prevent rejected updates.
+
+**Link fallback**: If the agentic tools fail or the user wants manual control:
+- Categories & services: `mcp__fly-agent__generate_shareable_link` with `link_type="optimize"` — full optimization wizard
+- Services only: `mcp__fly-agent__generate_shareable_link` with `link_type="gbp_services"`
+- Attributes only: `mcp__fly-agent__generate_shareable_link` with `link_type="gbp_attributes"`
 
 ## Workflow: Competitor Audit
 
@@ -119,6 +142,20 @@ Present audit results as an outcome-focused scorecard:
 - **Recommended Next Action**: specific command to run next (e.g., "Run `/quick-post` to start converting visibility into engagement" or "Run `/rank-check` to see how these changes affect your local rankings")
 
 For multi-location audits, present a summary table: location name, SEO score, score trend, biggest gap, estimated visibility opportunity, and recommended action — sorted by lowest score first (biggest opportunity).
+
+## Available Shareable Links
+
+When a user wants to do something manually in the web UI, or when a direct tool action isn't available, use `mcp__fly-agent__generate_shareable_link` with the appropriate `link_type`:
+
+| link_type | When to offer |
+|-----------|---------------|
+| `optimize` | Full profile optimization wizard (categories, services, hours, attributes) |
+| `gbp_services` | User wants to manually browse and add/edit services |
+| `gbp_attributes` | User wants to manually manage business attributes |
+| `photos` | User wants to upload/manage GBP photos (always requires link — no agentic upload) |
+| `dashboard` | User wants to see a visual performance dashboard |
+
+Call `mcp__fly-agent__get_available_links` to show the user all available self-service options.
 
 ## Reference Files
 

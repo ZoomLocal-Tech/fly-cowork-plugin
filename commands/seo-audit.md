@@ -1,6 +1,6 @@
 ---
 description: Run a quick SEO audit on a location
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit", "mcp__fly-agent__get_category_suggestions", "mcp__fly-agent__get_available_services"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit", "mcp__fly-agent__get_category_suggestions", "mcp__fly-agent__get_available_services", "mcp__fly-agent__generate_shareable_link"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -53,3 +53,8 @@ For each location, if the audit reveals category or service gaps:
 **Multiple locations:** Present a summary table with: location name, SEO score, biggest gap, estimated visibility opportunity — sorted by lowest score (biggest opportunity). Then offer:
 - "Want to optimize the weakest location first? That's where the biggest gains are."
 - "Want to see a full breakdown for any specific location?"
+
+**Manual optimization option:** If the user wants to handle optimization manually, offer:
+- `mcp__fly-agent__generate_shareable_link` with `link_type="optimize"` — full optimization wizard with AI recommendations
+- `mcp__fly-agent__generate_shareable_link` with `link_type="gbp_services"` — for service gaps
+- `mcp__fly-agent__generate_shareable_link` with `link_type="gbp_attributes"` — for attribute gaps
