@@ -30,45 +30,131 @@ If you already have the `fly-agent` MCP configured in your Claude settings, skip
 
 Skills activate automatically when you ask naturally. No need to memorize commands — just describe what you want.
 
-| Skill | Ask things like... | What you can do |
-|-------|-------------------|-----------------|
-| **GBP Audit & Optimize** | "audit my profile", "optimize my GBP", "check SEO score" | Run a full profile audit with SEO scoring, get AI-generated descriptions, update categories and services using Google's validated taxonomy, enable profile protection against unauthorized edits, compare before/after audit scores |
-| **Review Command Center** | "manage reviews", "respond to reviews", "review sentiment" | Respond to all unreplied reviews in bulk with tone-appropriate AI replies (friendly for 5-star, apologetic for 1-star), set up an auto-responder for hands-free 100% reply rate, generate QR codes and review collection links to get more reviews |
-| **Performance & Analytics** | "show my analytics", "KPI dashboard", "compare performance" | See views, clicks, calls, and direction requests across all locations, compare performance across time periods, get executive KPI summaries, break down by device type and region |
-| **Rank Tracker** | "keyword rankings", "visibility score", "track keywords" | Track up to 5 keywords per location with grid-based positioning, run on-demand rank scans, see ranking trends over time, analyze competitor positions, get a visibility score summarizing your local search presence |
-| **Citation Scanner** | "scan citations", "NAP consistency", "directory listings" | Discover your business listings across online directories, audit NAP (Name, Address, Phone) consistency, identify missing citation opportunities, get a prioritized fix list with health scores |
-| **Content Engine** | "create a post", "content calendar", "trending topics" | Generate post ideas from trending topics and upcoming holidays, create posts with AI-written copy, schedule or publish immediately to GBP, manage drafts, track which content performs best, fill content gaps |
-| **Microsite Manager** | "create microsite", "landing page", "store locator" | Build a branded landing page or store locator in minutes, choose from templates, customize theme/colors/fonts, manage page sections (hero, services, reviews, map), set up a custom domain, track visitor analytics |
-| **Traffic Insights** | "search traffic", "keyword traffic", "traffic trends" | Understand how customers find you on Google — see traffic by category (branded, transactional, navigational), track individual keyword performance, compare periods, identify growing and declining search terms |
-| **Reporting Hub** | "monthly report", "PDF report", "email report" | Generate monthly performance reports, compare month-over-month trends, export as white-labeled PDFs, email reports directly to clients — all branded with your agency's identity |
-| **Workspace & Account Ops** | "switch workspace", "list locations", "subscription" | Navigate between client workspaces and locations, check account and subscription status, manage onboarding progress, generate self-service links for any action, upload photos and reference images |
+### GBP Audit & Optimize
+> Try: "audit my profile", "optimize my GBP", "check SEO score"
+
+- Run a full profile audit with SEO scoring
+- Get AI-generated business descriptions optimized for local search
+- Update categories and services using Google's validated taxonomy
+- Enable profile protection against unauthorized edits
+- Compare before/after audit scores to measure improvement
+
+### Review Command Center
+> Try: "manage reviews", "respond to reviews", "review sentiment"
+
+- Respond to all unreplied reviews in bulk with tone-appropriate AI replies (friendly for 5-star, apologetic for 1-star)
+- Set up an auto-responder for hands-free 100% reply rate
+- Generate QR codes and review collection links to get more reviews
+- Track review sentiment trends over time
+
+### Performance & Analytics
+> Try: "show my analytics", "KPI dashboard", "compare performance"
+
+- See views, clicks, calls, and direction requests across all locations
+- Compare performance across time periods (week-over-week, month-over-month)
+- Get executive KPI summaries for quick decision-making
+- Break down metrics by device type, source, and region
+
+### Rank Tracker
+> Try: "keyword rankings", "visibility score", "track keywords"
+
+- Track up to 5 keywords per location with grid-based map positioning
+- Run on-demand rank scans to see where you appear right now
+- See ranking trends over time to measure SEO progress
+- Analyze competitor positions for your target keywords
+- Get a visibility score summarizing your local search presence
+
+### Citation Scanner
+> Try: "scan citations", "NAP consistency", "directory listings"
+
+- Discover your business listings across online directories
+- Audit NAP (Name, Address, Phone) consistency across all citations
+- Identify missing citation opportunities on high-authority directories
+- Get a prioritized fix list with health scores
+
+### Content Engine
+> Try: "create a post", "content calendar", "trending topics"
+
+- Generate post ideas from trending topics and upcoming holidays
+- Create posts with AI-written copy tailored to your business
+- Schedule or publish immediately to Google Business Profile
+- Manage drafts and track which content performs best
+- Identify content gaps and plan your posting cadence
+
+### Microsite Manager
+> Try: "create microsite", "landing page", "store locator"
+
+- Build a branded landing page or multi-location store locator in minutes
+- Choose from templates and customize theme, colors, and fonts
+- Manage page sections (hero, services, reviews, map, and more)
+- Set up a custom domain for a professional URL
+- Track visitor analytics to measure page performance
+
+### Traffic Insights
+> Try: "search traffic", "keyword traffic", "traffic trends"
+
+- Understand how customers find you on Google Search and Maps
+- See traffic by category: branded, transactional, navigational, informational
+- Track individual keyword performance and growth rates
+- Compare traffic across periods to spot trends
+- Identify growing and declining search terms
+
+### Reporting Hub
+> Try: "monthly report", "PDF report", "email report"
+
+- Generate monthly performance reports with key metrics and trends
+- Compare month-over-month to highlight growth and areas needing attention
+- Export as white-labeled PDFs with your agency's branding
+- Email reports directly to clients from within Claude
+
+### Workspace & Account Ops
+> Try: "switch workspace", "list locations", "subscription"
+
+- Navigate between client workspaces and locations
+- Check account details and subscription status
+- Track onboarding progress for new locations
+- Generate self-service links for any action
+- Upload photos and brand reference images
 
 ## Commands (11)
 
 Slash commands are quick shortcuts for common workflows. Type them directly to jump into action.
 
-| Command | What it does |
-|---------|-------------|
-| `/setup-mcp` | Connect the Fly Agent MCP server to your Claude settings — required for all other commands to work |
-| `/setup-branding` | Configure your agency's white-label identity (name, logo, colors, tagline) used in all reports and emails |
-| `/daily-ops` | Daily operational check: respond to new reviews, verify profile protection is active, recover any failed posts (~10 min) |
-| `/weekly-ops` | Weekly routine: refresh keyword rankings, check review sentiment trends, publish fresh content, compare performance week-over-week (~30 min) |
-| `/monthly-ops` | Monthly review: generate full reports with month-over-month comparisons, re-audit all profiles, analyze traffic trends, plan next month's content (~60 min) |
-| `/seo-audit` | Run a quick SEO audit on one or all locations — get a completeness score, category & service gap analysis, and prioritized optimization recommendations |
-| `/respond-reviews` | Batch-respond to all unreplied reviews across selected locations with AI-generated, tone-appropriate replies. Review and approve before posting |
-| `/rank-check` | Check current keyword rankings or scan a new keyword. See your position on the local map grid and track changes over time |
-| `/citation-scan` | Run a full citation discovery scan — find where your business is listed, check NAP accuracy, and identify directories where you're missing |
-| `/quick-post` | Generate and publish a GBP post in minutes. Provide a topic or get AI suggestions, review the copy, then publish to one or all locations |
-| `/performance` | Quick performance dashboard showing views, clicks, calls, and direction requests with period-over-period comparison |
+### Setup
+- **`/setup-mcp`** — Connect the Fly Agent MCP server to your Claude settings. Required for all other commands to work.
+- **`/setup-branding`** — Configure your agency's white-label identity (name, logo, colors, tagline) used in all reports and emails.
+
+### Operational Routines
+- **`/daily-ops`** — Daily check (~10 min): respond to new reviews, verify profile protection is active, recover any failed posts.
+- **`/weekly-ops`** — Weekly routine (~30 min): refresh keyword rankings, check review sentiment trends, publish fresh content, compare performance week-over-week.
+- **`/monthly-ops`** — Monthly review (~60 min): generate full reports with month-over-month comparisons, re-audit all profiles, analyze traffic trends, plan next month's content.
+
+### On-Demand Actions
+- **`/seo-audit`** — Run a quick SEO audit on one or all locations. Get a completeness score, category & service gap analysis, and prioritized optimization recommendations.
+- **`/respond-reviews`** — Batch-respond to all unreplied reviews across selected locations with AI-generated, tone-appropriate replies. Review and approve before posting.
+- **`/rank-check`** — Check current keyword rankings or scan a new keyword. See your position on the local map grid and track changes over time.
+- **`/citation-scan`** — Run a full citation discovery scan. Find where your business is listed, check NAP accuracy, and identify directories where you're missing.
+- **`/quick-post`** — Generate and publish a GBP post in minutes. Provide a topic or get AI suggestions, review the copy, then publish to one or all locations.
+- **`/performance`** — Quick performance dashboard showing views, clicks, calls, and direction requests with period-over-period comparison.
 
 ## Agents (2)
 
 Autonomous agents handle complex multi-step workflows that span multiple locations.
 
-| Agent | What it handles |
-|-------|----------------|
-| **Workspace Orchestrator** | Bulk operations across all your locations: run audits on every profile at once, compare performance across locations, generate workspace-wide reports, refresh rankings everywhere, identify your top and bottom performers. Uses workspace-level aggregate API calls so 50 locations take one call, not 50. |
-| **Review Responder** | Systematic review response across all locations: prioritizes negative reviews first, generates tone-appropriate replies (apologetic for 1-star, professional for 3-star, friendly for 5-star), presents all responses for your approval before posting, reports on reply rate improvement when done. |
+### Workspace Orchestrator
+Bulk operations across all your locations in a single pass:
+- Run audits on every profile at once
+- Compare performance across locations to find top and bottom performers
+- Generate workspace-wide reports and email them to clients
+- Refresh rankings and traffic insights everywhere
+- Uses workspace-level aggregate API calls — 50 locations take one call, not 50
+
+### Review Responder
+Systematic review response across all locations:
+- Prioritizes negative reviews first so urgent issues get handled quickly
+- Generates tone-appropriate replies (apologetic for 1-star, professional for 3-star, friendly for 5-star)
+- Presents all responses for your approval before posting — nothing goes out without your OK
+- Reports on reply rate improvement and rating impact when done
 
 ## Self-Service Links (16 types)
 
