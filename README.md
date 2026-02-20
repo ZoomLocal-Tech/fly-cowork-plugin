@@ -121,7 +121,7 @@ Nothing runs on "all" unless you explicitly say so. This keeps operations safe a
 
 ## Version
 
-0.6.0
+0.8.0
 
 ## Author
 
