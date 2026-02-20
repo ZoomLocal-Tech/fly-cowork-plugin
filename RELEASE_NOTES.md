@@ -1,5 +1,16 @@
 # Release Notes
 
+## v0.9.0 (2026-02-20)
+
+### Image Upload Support for Posts
+
+Posts with images get significantly more engagement. This release adds image upload and AI image generation to the content publishing workflow.
+
+- **Upload images before publishing** — The quick-post command and content engine skill now support uploading user images and generating AI images before creating drafts
+- **Image-first workflow** — Images are always uploaded to permanent storage before being attached to post drafts, ensuring reliable publishing
+
+---
+
 ## v0.8.0 (2026-02-20)
 
 ### Self-Service Links & Smarter Automation
