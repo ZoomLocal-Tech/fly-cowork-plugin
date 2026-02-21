@@ -77,9 +77,12 @@ Present ideas as a numbered list with topic, suggested post type, and why it's r
 **CRITICAL**: Always upload images BEFORE creating the draft. Posts with images get significantly more engagement.
 
 ### When User Uploads an Image in Chat:
-1. Call `mcp__fly-agent__upload_user_image` with the image data from the chat attachment
-2. The tool returns a permanent URL
-3. Pass that URL to `create_post_draft` via the `media_urls` parameter
+**In Claude Code CLI**: Read the file with base64, then call `mcp__fly-agent__upload_user_image` with `image_data`.
+**In Claude Cowork/Desktop**: Chat attachments are NOT accessible as files — you cannot base64-encode them. Instead:
+1. Generate the post content first with `mcp__fly-agent__generate_post_content`
+2. Tell the user: "I can see your image but can't upload it directly from chat. Let me give you a link where you can create the post with your photo attached."
+3. Call `mcp__fly-agent__generate_shareable_link` with `link_type="new_post"` — this opens the post creation wizard where they can attach the photo
+4. Include the generated post text so the user can paste it in
 
 ### When User Provides an Image URL:
 1. Call `mcp__fly-agent__upload_user_image` with `image_url` parameter

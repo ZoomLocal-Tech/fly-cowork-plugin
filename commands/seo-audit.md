@@ -1,6 +1,6 @@
 ---
 description: Run a quick SEO audit on a location
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit", "mcp__fly-agent__get_category_suggestions", "mcp__fly-agent__get_available_services", "mcp__fly-agent__generate_shareable_link"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit", "mcp__fly-agent__get_category_suggestions", "mcp__fly-agent__update_profile_categories", "mcp__fly-agent__get_available_services", "mcp__fly-agent__update_services", "mcp__fly-agent__generate_shareable_link"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -36,9 +36,19 @@ For each location in scope:
 ## Step 2b: Category & Service Gap Analysis
 
 For each location, if the audit reveals category or service gaps:
-1. Call `mcp__fly-agent__get_category_suggestions` to find relevant additional categories the business should add
+1. Call `mcp__fly-agent__get_category_suggestions` to get AI-powered category recommendations (returns pre-validated `display_name` + `category_id` pairs)
 2. Call `mcp__fly-agent__get_available_services` to identify valid service types the location can list
-3. Include specific category and service recommendations in the audit findings (with validated values the user can act on)
+3. Include specific category and service recommendations in the audit findings — use the exact `display_name` or `category_id` values from the suggestion tool (do NOT invent category names)
+
+## Step 2c: Apply Fixes (if user agrees)
+
+When the user wants to apply category or service optimizations:
+1. Call `mcp__fly-agent__update_profile_categories` with the exact values from `get_category_suggestions`:
+   - `primary_category`: a single string (display name or gcid)
+   - `additional_categories`: a JSON array of strings, e.g. `["Computer consultant", "IT service"]` — NOT a comma-separated string
+2. Call `mcp__fly-agent__update_services` with validated `serviceTypeId` values from `get_available_services`
+
+**Fallback**: If `update_profile_categories` or `update_services` fails, generate a link using `mcp__fly-agent__generate_shareable_link` with `link_type="optimize"` (NOT "audit-report"). This opens the full optimization wizard where the user can apply changes manually.
 
 ## Step 3: Present Results with Business Impact
 

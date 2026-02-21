@@ -6,6 +6,7 @@ description: >
   "run a profile audit", "generate a better description", "optimize profile",
   or needs guidance on GBP profile completeness, SEO scoring, or profile protection.
 version: 0.1.0
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_gbp_profile", "mcp__fly-agent__get_profile_audit", "mcp__fly-agent__get_seo_score_breakdown", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__run_gmb_audit", "mcp__fly-agent__get_category_suggestions", "mcp__fly-agent__update_profile_categories", "mcp__fly-agent__get_available_services", "mcp__fly-agent__update_services", "mcp__fly-agent__start_profile_optimization", "mcp__fly-agent__apply_profile_optimizations", "mcp__fly-agent__analyze_website_for_optimization", "mcp__fly-agent__generate_seo_description", "mcp__fly-agent__update_profile_field", "mcp__fly-agent__sync_or_refresh_profile_from_google", "mcp__fly-agent__compare_audit_scores", "mcp__fly-agent__generate_shareable_link", "mcp__fly-agent__get_setup_progress", "mcp__fly-agent__get_next_setup_step", "mcp__fly-agent__get_full_setup_status", "mcp__fly-agent__redo_setup_step", "mcp__fly-agent__create_onboarding_link"]
 ---
 
 # GBP Audit & Optimize
@@ -63,8 +64,8 @@ For bulk operations, loop through each location_id and run the workflow per loca
 
 Use these dedicated tools for category and service updates — they validate against Google's official taxonomy to ensure only valid values are submitted.
 
-1. **Get category suggestions** — call `mcp__fly-agent__get_category_suggestions` to get relevant primary and additional category recommendations based on the business type
-2. **Update categories** — call `mcp__fly-agent__update_profile_categories` with validated category IDs from the suggestions to set primary and additional categories
+1. **Get category suggestions** — call `mcp__fly-agent__get_category_suggestions` to get AI-powered category recommendations. Each suggestion includes a `display_name` and `category_id` (gcid format), all pre-validated against Google's official category list.
+2. **Update categories** — call `mcp__fly-agent__update_profile_categories` passing the exact `display_name` or `category_id` values from the suggestions. Do NOT invent category names — only use values returned by the suggestion tool.
 3. **Get available services** — call `mcp__fly-agent__get_available_services` to see the valid service types for the location's categories (pulled from Google's official taxonomy)
 4. **Update services** — call `mcp__fly-agent__update_services` with validated serviceTypeId values to add or update service items on the profile
 

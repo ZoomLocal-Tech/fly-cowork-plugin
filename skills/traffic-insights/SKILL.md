@@ -41,7 +41,7 @@ Traffic is categorized into four types:
 Call `mcp__fly-agent__get_traffic_by_category` with category ("branded", "transactional", "navigational", or "informational") for detailed keyword list within that category.
 
 ### Deep dive
-Call `mcp__fly-agent__get_category_deep_dive` with category for:
+Call `mcp__fly-agent__get_search_category_deep_dive` with category for:
 - Total traffic and share of voice
 - Monthly trend with growth rates
 - Top keywords in category
