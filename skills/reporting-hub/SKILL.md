@@ -5,8 +5,7 @@ description: >
   "performance report", "PDF report", "email a report", "compare months",
   "workspace report", "available reports", "export report", "quarterly review",
   or needs to generate, export, or email any business performance reports.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Reporting Hub

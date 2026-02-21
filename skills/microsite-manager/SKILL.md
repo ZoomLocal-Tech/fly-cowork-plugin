@@ -6,8 +6,7 @@ description: >
   "customize my site", "change theme", "site sections", "custom domain",
   "microsite analytics", "SEO settings for my site", or needs help
   managing Fly-powered microsites and landing pages.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Microsite Manager

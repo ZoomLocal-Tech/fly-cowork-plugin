@@ -6,8 +6,7 @@ description: >
   "get a review QR code", "review generator link", "bulk reply to reviews",
   "analyze review trends", or needs help with any Google Business Profile
   review management tasks.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Review Command Center

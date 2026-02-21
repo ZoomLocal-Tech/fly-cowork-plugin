@@ -6,8 +6,7 @@ description: >
   "add a location", "manage billing", "usage limits", "switch location",
   "show all workspaces", "onboarding link", "upload photos",
   or needs help navigating multi-workspace and multi-location setups.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Workspace & Account Operations

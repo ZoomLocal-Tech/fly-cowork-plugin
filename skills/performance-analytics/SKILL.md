@@ -6,8 +6,7 @@ description: >
   "compare performance", "regional breakdown", "mobile vs desktop",
   "executive summary", "business health", or needs any Google Business Profile
   performance data, trends, or analysis.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Performance & Analytics

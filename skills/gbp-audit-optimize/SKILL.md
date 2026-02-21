@@ -5,8 +5,7 @@ description: >
   "optimize my GBP", "check my SEO score", "improve my Google Business Profile",
   "run a profile audit", "generate a better description", "optimize profile",
   or needs guidance on GBP profile completeness, SEO scoring, or profile protection.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # GBP Audit & Optimize

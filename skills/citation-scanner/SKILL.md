@@ -6,8 +6,7 @@ description: >
   "citation health", "add a citation", "citation opportunities",
   "directory listings", or needs help managing business citations
   across online directories.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Citation Scanner & Builder

@@ -6,8 +6,7 @@ description: >
   "branded vs transactional", "traffic distribution", "keyword performance",
   "traffic report", "search insights", or needs to analyze how customers
   find their business through Google Search.
-metadata:
-  version: 0.1.0
+version: 0.1.0
 ---
 
 # Traffic Insights
