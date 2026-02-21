@@ -196,7 +196,7 @@ For agencies managing multiple clients, per-workspace branding is supported — 
 
 ## Version
 
-0.9.0
+0.9.2
 
 ## Author
 

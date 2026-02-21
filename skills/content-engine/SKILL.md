@@ -6,7 +6,8 @@ description: >
   "what should I post", "trending topics", "content gaps", "schedule posts",
   "manage drafts", "best performing content", "upcoming holidays",
   or needs help with Google Business Profile content creation and publishing.
-version: 0.1.0
+metadata:
+  version: 0.1.0
 ---
 
 # Content Engine

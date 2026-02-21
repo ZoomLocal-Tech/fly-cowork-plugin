@@ -5,7 +5,8 @@ description: >
   "how do I rank", "track keywords", "visibility score", "competitor rankings",
   "ranking trends", "add keyword", "remove keyword", "keyword suggestions",
   "run a rank scan", "refresh rankings", or needs local search ranking data.
-version: 0.1.0
+metadata:
+  version: 0.1.0
 ---
 
 # Rank Tracker & Visibility
