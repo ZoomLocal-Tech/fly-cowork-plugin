@@ -1,24 +1,32 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "zoomlocal-marketplace",
-  "description": "Plugins by ZoomLocal Tech for local SEO and Google Business Profile management.",
   "owner": {
     "name": "ZoomLocal Tech Private Limited",
-    "email": "support@fly-social.com"
+    "url": "https://www.fly-social.com"
+  },
+  "metadata": {
+    "description": "Plugins by ZoomLocal Tech for local SEO and Google Business Profile management.",
+    "version": "0.9.0",
+    "repository": "https://github.com/ZoomLocal-Tech/fly-cowork-plugin"
   },
   "plugins": [
     {
       "name": "fly-cowork-plugin",
-      "description": "Comprehensive Google Business Profile management suite for agencies, freelancers, and multi-location brands. 10 skills, 10 commands, 2 agents, white-label branding. Powered by Fly Agent MCP.",
-      "version": "0.9.0",
-      "author": {
-        "name": "ZoomLocal Tech Private Limited",
-        "email": "support@fly-social.com"
-      },
+      "description": "Comprehensive Google Business Profile management suite for agencies, freelancers, and multi-location brands. 10 skills, 11 commands, 2 agents, white-label branding. Powered by Fly Agent MCP.",
       "source": "./",
-      "category": "productivity",
-      "homepage": "https://www.fly-social.com",
-      "tags": ["local-seo", "gbp", "google-business", "reviews", "analytics", "agency"]
+      "strict": false,
+      "skills": [
+        "./skills/gbp-audit-optimize",
+        "./skills/review-command-center",
+        "./skills/performance-analytics",
+        "./skills/rank-tracker",
+        "./skills/citation-scanner",
+        "./skills/content-engine",
+        "./skills/microsite-manager",
+        "./skills/traffic-insights",
+        "./skills/reporting-hub",
+        "./skills/workspace-account-ops"
+      ]
     }
   ]
 }
