@@ -10,14 +10,26 @@
     {
       "name": "fly-cowork-plugin",
       "description": "Comprehensive Google Business Profile management suite for agencies, freelancers, and multi-location brands. 10 skills, 11 commands, 2 agents, white-label branding. Powered by Fly Agent MCP.",
-      "version": "0.9.4",
+      "version": "0.9.5",
       "author": {
         "name": "ZoomLocal Tech Private Limited",
         "email": "support@fly-social.com"
       },
       "source": "./",
       "category": "productivity",
-      "homepage": "https://www.fly-social.com"
+      "homepage": "https://www.fly-social.com",
+      "skills": [
+        "./skills/gbp-audit-optimize",
+        "./skills/review-command-center",
+        "./skills/performance-analytics",
+        "./skills/rank-tracker",
+        "./skills/citation-scanner",
+        "./skills/content-engine",
+        "./skills/microsite-manager",
+        "./skills/traffic-insights",
+        "./skills/reporting-hub",
+        "./skills/workspace-account-ops"
+      ]
     }
   ]
 }
