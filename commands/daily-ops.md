@@ -1,6 +1,6 @@
 ---
 description: Run daily Local SEO operational checks
-allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email", "mcp__fly-agent__get_workspace_reviews_needing_reply", "mcp__fly-agent__get_workspace_protection_status", "mcp__fly-agent__get_workspace_failed_posts", "mcp__fly-agent__bulk_enable_protection", "mcp__fly-agent__bulk_setup_review_responder", "mcp__fly-agent__bulk_retry_failed_posts", "mcp__fly-agent__generate_shareable_link"]
+allowed-tools: ["mcp__fly-agent__list_workspaces", "mcp__fly-agent__list_locations", "mcp__fly-agent__set_default_location", "mcp__fly-agent__get_reviews_needing_reply", "mcp__fly-agent__generate_review_response", "mcp__fly-agent__post_selected_reply", "mcp__fly-agent__get_profile_protection_status", "mcp__fly-agent__enable_profile_protection", "mcp__fly-agent__get_auto_responder_status", "mcp__fly-agent__setup_review_responder", "mcp__fly-agent__get_failed_posts", "mcp__fly-agent__retry_failed_post", "mcp__fly-agent__get_workspace_review_summary", "mcp__fly-agent__get_workspace_summary", "mcp__fly-agent__refresh_reviews_from_google", "mcp__fly-agent__send_report_email", "mcp__fly-agent__get_workspace_reviews_needing_reply", "mcp__fly-agent__get_workspace_protection_status", "mcp__fly-agent__get_workspace_failed_posts", "mcp__fly-agent__bulk_enable_protection", "mcp__fly-agent__bulk_setup_review_responder", "mcp__fly-agent__bulk_retry_failed_posts", "mcp__fly-agent__generate_shareable_link", "mcp__fly-agent__get_post_history"]
 argument-hint: [workspace-name, location-name, or "all"]
 ---
 
@@ -83,6 +83,8 @@ Present a consolidated daily ops report branded with the user's identity. Lead w
 - **Urgent items**: List anything needing immediate manual attention
 
 **Recommended Next Action**: Based on today's data, suggest the single most impactful thing the user should do next (e.g., "Your reply rate is below 80% — respond to remaining reviews to build customer trust" or "All clear today — consider publishing a post to maintain engagement").
+
+**IMPORTANT — posting recommendations**: Before suggesting that the user publish a post, check `mcp__fly-agent__get_post_history` (add it to the daily ops flow or reference the failed-posts data). If a post was published in the last 24 hours, do NOT suggest posting again. Instead say: "You posted recently — your next post should be in [X] days to maintain optimal spacing (2-3 days between posts)." Only recommend posting if the last post was 3+ days ago.
 
 Keep the tone operational and outcome-focused. Flag urgent items at the top.
 

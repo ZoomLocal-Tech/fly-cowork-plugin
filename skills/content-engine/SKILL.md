@@ -19,16 +19,49 @@ Content ideation, creation, scheduling, and publishing for Google Business Profi
 2. Content can be created per location or templated across locations
 3. Each location has its own post history and drafts
 
+## CRITICAL: Always Check Post History First
+
+**Before suggesting ANY content ideas, posting recommendations, or creating posts**, you MUST:
+
+1. Call `mcp__fly-agent__get_post_history` to see recent posts
+2. Check the most recent post's `published_at` timestamp
+3. Apply these posting cadence rules:
+   - **Posted in the last 24 hours** → Do NOT recommend posting again. Say: "You published [post title] [X hours ago]. Your next post should be in [Y days] to maintain optimal 2-3 day spacing."
+   - **Posted 1-3 days ago** → Posting is OK but not urgent. Mention the recent post and suggest scheduling for 1-2 days later.
+   - **Posted 3-7 days ago** → Good time to post. Recommend creating content soon.
+   - **No posts in 7+ days** → Urgent. Flag that the profile is going stale and recommend posting immediately.
+4. Always tell the user when their last post was published before making any content suggestions.
+
+**Never skip this check.** The user should never receive a "you should post" recommendation when they just posted minutes or hours ago.
+
+## Seasonal & Date Awareness
+
+**Always consider the current date and season when generating or suggesting content.**
+
+India seasonal calendar (most businesses are India-based):
+- **Winter** (Dec-Feb): Winter specials, New Year, Republic Day (Jan 26), Valentine's Day (Feb 14), cold-weather services
+- **Spring** (Mar-Apr): Holi, Ugadi/Gudi Padwa, spring cleaning, new beginnings
+- **Summer** (May-Jun): Summer specials, beat-the-heat tips, school vacation deals, Mother's Day
+- **Monsoon** (Jul-Sep): Monsoon preparedness, rainy-day offers, Independence Day (Aug 15), Ganesh Chaturthi
+- **Festival Season** (Oct-Nov): Navratri, Dussehra, Diwali, Dhanteras, pre-winter deals
+- **Year-End** (Dec): Christmas, year-in-review, holiday offers
+
+**Rules:**
+- If suggesting seasonal content, it MUST match the current month. Never suggest monsoon content in winter or vice versa.
+- When passing a `topic` to `generate_post_ideas`, include the current season context (e.g., "winter health tips" not just "health tips")
+- For holidays, use `get_upcoming_holidays` to verify dates — do not guess holiday timing
+
 ## Workflow: Content Ideation
 
-1. **Get ideas** — call `mcp__fly-agent__generate_post_ideas` with optional count (1-5) for AI-generated ideas based on business type and trends
-2. **Strategic suggestions** — call `mcp__fly-agent__get_content_suggestions` for data-driven recommendations based on category, seasonality, and past performance
-3. **Trending topics** — call `mcp__fly-agent__get_trending_topics` with optional category filter for current popular themes
-4. **Upcoming holidays** — call `mcp__fly-agent__get_upcoming_holidays` with days_ahead (default 30) for timely content opportunities
-5. **Content gaps** — call `mcp__fly-agent__get_content_gaps` to identify missing content types and opportunities
-6. **Best performers** — call `mcp__fly-agent__get_best_performing_content` to see what content has worked well in the past 90 days
+1. **Check recent posts first** — call `mcp__fly-agent__get_post_history` (see "Always Check Post History First" above). If a post was published in the last 24 hours, inform the user and skip ideation unless they insist.
+2. **Get ideas** — call `mcp__fly-agent__generate_post_ideas` with optional count (1-5) for AI-generated ideas based on business type and trends. Include seasonal context in the `topic` parameter if relevant.
+3. **Strategic suggestions** — call `mcp__fly-agent__get_content_suggestions` for data-driven recommendations based on category, seasonality, and past performance
+4. **Trending topics** — call `mcp__fly-agent__get_trending_topics` with optional category filter for current popular themes
+5. **Upcoming holidays** — call `mcp__fly-agent__get_upcoming_holidays` with days_ahead (default 30) for timely content opportunities
+6. **Content gaps** — call `mcp__fly-agent__get_content_gaps` to identify missing content types and opportunities
+7. **Best performers** — call `mcp__fly-agent__get_best_performing_content` to see what content has worked well in the past 90 days
 
-Present ideas as a numbered list with topic, suggested post type, and why it's relevant.
+Present ideas as a numbered list with topic, suggested post type, and why it's relevant. Always filter out seasonally inappropriate suggestions.
 
 ## Workflow: Content Creation
 
