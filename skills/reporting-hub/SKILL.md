@@ -68,7 +68,12 @@ All reports and emails should carry the user's branding, not Fly's. Before gener
 
 Apply branding to all output:
 - **PDF reports**: brand_name in headers (replacing "Fly"), logo_url in header, brand_color for accents, footer_text on every page
-- **Emails**: brand_name in subject line, tagline in header, contact_email as reply-to identity, footer_text and website_url in footer
+- **Emails**: When calling `mcp__fly-agent__send_report_email`, pass all branding params explicitly:
+  - `brand_name` — from branding.json `brand_name`
+  - `brand_color` — from branding.json `brand_color` (e.g. `"#f59e0b"`)
+  - `logo_url` — from branding.json `logo_url`
+  - `footer_text` — from branding.json `footer_text` (or compose from `website_url` + `contact_email`)
+  - Subject line should lead with brand_name (e.g. "ACME Digital — Monthly SEO Report")
 - **Summaries**: header with brand_name, sign off with footer_text
 
 See **`references/white-label-guide.md`** for full branding implementation details.

@@ -24,7 +24,7 @@ Full Google Business Profile audit and optimization workflow. Supports single-lo
 | Update categories | `get_category_suggestions` → `update_profile_categories` | `generate_shareable_link` type=optimize |
 | Update services | `get_available_services` → `update_services` | `generate_shareable_link` type=gbp_services |
 | Update attributes | `update_profile_field` | `generate_shareable_link` type=gbp_attributes |
-| Upload photos | _(no agentic tool — link required)_ | `generate_shareable_link` type=photos |
+| Upload photos | `create_upload_session(purpose="photo")` → `upload_location_photo` | `generate_shareable_link` type=photos |
 | Full optimization | `apply_profile_optimizations` | `generate_shareable_link` type=optimize |
 | Microsite setup | Microsite tools (set_theme, update_hero, etc.) | `generate_shareable_link` type=microsite |
 
@@ -50,14 +50,33 @@ For bulk operations, loop through each location_id and run the workflow per loca
 5. **Enable protection if off** — if protection is NOT enabled, call `mcp__fly-agent__enable_profile_protection` to turn it on immediately
 6. **Present findings** — summarize the audit with a clear score, category-by-category breakdown, and prioritized action items
 
+## CRITICAL: Profile Update Verification Protocol
+
+**Before calling ANY profile update tool** (`update_profile_field`, `update_profile_categories`, `update_services`, `apply_profile_optimizations`), you MUST:
+
+1. **State exactly what will change** — show:
+   - Field being updated: e.g. `description`
+   - Current value: (fetch from `get_gbp_profile` if not already known)
+   - New value: the proposed text
+
+2. **Get explicit Yes/No confirmation** before calling the update tool.
+
+3. **Verify field/value alignment** — wrong values cause permanent SEO damage:
+   - `field="name"` → value must be **short business name** (1-5 words, e.g. "Zerebral Health Clinic")
+   - `field="description"` → value must be **SEO paragraph** (150-750 chars)
+   - NEVER submit a multi-sentence SEO description as `field="name"`
+   - NEVER submit a short name as `field="description"`
+
+4. **After update** — confirm what changed and advise the user to check GBP in 24-48h.
+
 ## Workflow: Profile Optimization
 
 1. **Start optimization flow** — call `mcp__fly-agent__start_profile_optimization` to get the current assessment and optimization link
 2. **Analyze website** (if available) — call `mcp__fly-agent__analyze_website_for_optimization` with the business website URL to extract products, services, USPs, and keywords
 3. **Generate SEO description** — call `mcp__fly-agent__generate_seo_description` with style preference (professional, friendly, or compelling)
-4. **Present optimization suggestions** — show the user what changes are recommended, numbered for selection
-5. **Apply selected changes** — call `mcp__fly-agent__apply_profile_optimizations` with the user's selection (e.g., "1, 2, 3" or "all")
-6. **Update specific fields** if needed — use `mcp__fly-agent__update_profile_field` for targeted changes to description, phone, website, hours, attributes, or service areas
+4. **Present optimization suggestions** — show the user what changes are recommended, numbered for selection. For each proposed change, clearly label the **field name** and **new value** side by side.
+5. **Apply selected changes** — call `mcp__fly-agent__apply_profile_optimizations` with the user's selection (e.g., "1, 2, 3" or "all"). Confirm field/value alignment before calling.
+6. **Update specific fields** if needed — use `mcp__fly-agent__update_profile_field` for targeted changes to description, phone, website, hours, attributes, or service areas. Always follow the verification protocol above.
 
 ## Workflow: Category & Service Optimization
 

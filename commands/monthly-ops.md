@@ -138,7 +138,12 @@ Include report links and delivery confirmation.
 Ask the user: **"Would you like to email the monthly report to your client?"**
 
 If yes:
-1. Ensure PDFs have been generated in Step 9 (if not, generate them now)
-2. Ask for the client's email address (or use a previously provided one)
-3. Call `mcp__fly-agent__send_report_email` with report_type "monthly", the month/year, and client email
-4. Confirm delivery and provide a copy of what was sent
+1. Read branding config: `${CLAUDE_PLUGIN_ROOT}/config/branding.json` (or workspace-specific `branding-{workspace-name}.json`)
+2. Ensure PDFs have been generated in Step 9 (if not, generate them now)
+3. Ask for the client's email address (or use a previously provided one)
+4. Call `mcp__fly-agent__send_report_email` with report_type "monthly", the month/year, client email, and branding params from config:
+   - `brand_name` from branding.json
+   - `brand_color` from branding.json
+   - `logo_url` from branding.json
+   - `footer_text` from branding.json (or compose: "{brand_name} | {website_url} | {contact_email}")
+5. Confirm delivery and provide a copy of what was sent

@@ -93,7 +93,12 @@ Keep the tone operational and outcome-focused. Flag urgent items at the top.
 Ask the user: **"Would you like to send a daily update to your client?"**
 
 If yes:
-1. Compile the daily summary into a concise update
-2. Ask for the client's email address (or use a previously provided one)
-3. Call `mcp__fly-agent__send_report_email` with report_type "custom" and the client email
-4. Alternatively, present the summary in a copy-friendly format the user can paste into their own email/chat
+1. Read branding config: `${CLAUDE_PLUGIN_ROOT}/config/branding.json` (or workspace-specific `branding-{workspace-name}.json`)
+2. Compile the daily summary into a concise update
+3. Ask for the client's email address (or use a previously provided one)
+4. Call `mcp__fly-agent__send_report_email` with report_type "custom", the client email, and branding params from config:
+   - `brand_name` from branding.json
+   - `brand_color` from branding.json
+   - `logo_url` from branding.json
+   - `footer_text` from branding.json (or compose: "{brand_name} | {website_url} | {contact_email}")
+5. Alternatively, present the summary in a copy-friendly format the user can paste into their own email/chat

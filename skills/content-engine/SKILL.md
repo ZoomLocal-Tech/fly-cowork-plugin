@@ -109,13 +109,36 @@ Present ideas as a numbered list with topic, suggested post type, and why it's r
 
 **CRITICAL**: Always upload images BEFORE creating the draft. Posts with images get significantly more engagement.
 
-### When User Uploads an Image in Chat:
-**In Claude Code CLI**: Read the file with base64, then call `mcp__fly-agent__upload_user_image` with `image_data`.
-**In Claude Cowork/Desktop**: Chat attachments are NOT accessible as files — you cannot base64-encode them. Instead:
-1. Generate the post content first with `mcp__fly-agent__generate_post_content`
-2. Tell the user: "I can see your image but can't upload it directly from chat. Let me give you a link where you can create the post with your photo attached."
-3. Call `mcp__fly-agent__generate_shareable_link` with `link_type="new_post"` — this opens the post creation wizard where they can attach the photo
-4. Include the generated post text so the user can paste it in
+### When User Attaches an Image in Chat (Cowork / Claude.ai web):
+
+In Cowork, image bytes cannot be extracted from chat attachments for tool calls. Use the upload session flow — the user only needs to tap one link, then everything else is automated.
+
+**Step 1 — Ask intent:**
+"I can see your image! What should I use it for?"
+1. 📝 Create a post with this image
+2. 🎨 Save as reference image (personalizes AI-generated content)
+3. 📸 Upload to Google Business Profile
+
+**Step 2 — Create upload session:**
+Call `mcp__fly-agent__create_upload_session` with:
+- Post image → `purpose="post"`
+- Reference → `purpose="reference"`
+- GBP photo → `purpose="photo"`
+
+Show the returned `upload_url`: "Tap here to upload: [url]"
+Save the `session_id` from the response (look for `[SESSION_ID: ...]` in the tool output).
+
+**Step 3 — Auto-retrieve after upload:**
+Tell user: "I'll check automatically once you upload."
+Poll `mcp__fly-agent__check_upload_session(session_id=...)` every few seconds.
+When status = "complete", extract the image URLs from `[IMAGE_URLS: ...]` in the tool output.
+
+**Step 4 — Complete the action directly (no more links):**
+- **Post**: Call `mcp__fly-agent__generate_post_content` using the image as topic, then `mcp__fly-agent__create_post_draft(media_urls=url, ...)`. Confirm: "✅ Draft created with your image! Publish now or schedule?"
+- **Reference**: Call `mcp__fly-agent__save_to_location_references(image_url=url, category=...)`. Ask for category if unclear (Interior/Exterior/Staff/Products/Logo/Other). Confirm: "✅ Saved as reference image."
+- **GBP Photo**: Ask photo type (Cover/Profile/Additional), then call `mcp__fly-agent__upload_location_photo(image_url=url, photo_type=...)`. Confirm: "✅ Photo submitted to GBP (24-48h to appear)."
+
+**Multiple images:** The session returns all URLs. For posts, pass comma-separated to `media_urls`. For references, call `save_to_location_references` once per image.
 
 ### When User Provides an Image URL:
 1. Call `mcp__fly-agent__upload_user_image` with `image_url` parameter
@@ -126,10 +149,6 @@ Present ideas as a numbered list with topic, suggested post type, and why it's r
 1. Optionally call `mcp__fly-agent__generate_post_image` with a description
 2. The tool generates an AI image and returns a URL
 3. Pass that URL to `create_post_draft` via the `media_urls` parameter
-
-### Multiple Images:
-- For multiple images, call `upload_user_image` for each one
-- Collect all URLs and pass them as comma-separated to `media_urls` parameter
 
 **Never skip the upload step** — `create_post_draft` requires accessible URLs, not raw image data.
 
